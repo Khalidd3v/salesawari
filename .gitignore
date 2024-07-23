@@ -1,0 +1,56 @@
+# Ignore virtual environment
+env/
+env/*
+
+# Ignore macOS system files
+.DS_Store
+salesawari/.DS_Store
+
+# Ignore SQLite database files
+salesawari/db.sqlite3
+
+# Ignore compiled bytecode files
+*.pyc
+__pycache__/
+salesawari/accounts/__pycache__/
+salesawari/dashboard/__pycache__/
+
+# Ignore migration files
+salesawari/accounts/migrations/
+salesawari/accounts/migrations/*.pyc
+salesawari/dashboard/migrations/
+salesawari/dashboard/migrations/*.pyc
+
+# Ignore local settings
+salesawari/salesawari/local_settings.py
+
+# Ignore media and static files
+salesawari/media/
+salesawari/staticfiles/
+
+# Ignore editor specific files
+.vscode/
+.idea/
+
+# Ignore log files
+*.log
+
+# Ignore temporary files
+*.tmp
+*.bak
+*.swp
+
+# Ignore node_modules
+node_modules/
+
+# Ignore build directories
+build/
+dist/
+*.egg-info/
+
+# Ignore HTML template folder
+salesawari/templates/raw HTML/
+
+# Ignore specific folders in the project
+salesawari/landingpage/
+salesawari/seller/

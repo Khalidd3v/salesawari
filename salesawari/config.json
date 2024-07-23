@@ -1,0 +1,5 @@
+{
+    "SECRET_KEY": "htq_&x7_@%a@ch%sbwop8ka2s(&@smx%kes%fne)ge=hn&l9+$",
+    "DEBUG": true,
+    "ALLOWED_HOSTS": ["*"]
+}
