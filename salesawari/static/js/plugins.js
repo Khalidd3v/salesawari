@@ -38196,21 +38196,21 @@
  */
 var placeSearch, autocomplete;
 function initialize() {
-  autocomplete = new google.maps.places.Autocomplete(
-    document.getElementById("autocomplete"),
-    { types: ["geocode"] }
-  );
-  google.maps.event.addListener(autocomplete, "place_changed", function () {
-    fillInAddress();
-  });
+  // autocomplete = new google.maps.places.Autocomplete(
+  //   document.getElementById("autocomplete"),
+  //   { types: ["geocode"] }
+  // );
+  // google.maps.event.addListener(autocomplete, "place_changed", function () {
+  //   fillInAddress();
+  // });
 
-  autocomplete2 = new google.maps.places.Autocomplete(
-    document.getElementById("autocomplete2"),
-    { types: ["geocode"] }
-  );
-  google.maps.event.addListener(autocomplete2, "place_changed", function () {
-    fillInAddress();
-  });
+  // autocomplete2 = new google.maps.places.Autocomplete(
+  //   document.getElementById("autocomplete2"),
+  //   { types: ["geocode"] }
+  // );
+  // google.maps.event.addListener(autocomplete2, "place_changed", function () {
+  //   fillInAddress();
+  // });
 }
 function fillInAddress() {
   var place = autocomplete.getPlace();

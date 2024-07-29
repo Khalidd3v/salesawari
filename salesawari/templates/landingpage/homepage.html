@@ -1,529 +1,789 @@
 {% extends "landingpage/main.html" %}
 {% load static %}
+{% block title %}
+    Home Page
+{% endblock title %}
 {% block content %}
-         <!-- content begin -->
-         <div class="no-bottom no-top" id="content">
-            <div id="top"></div>
-            <section id="section-hero" aria-label="section" class="full-height vertical-center" data-bgimage="url({% static 'images/background/7.jpg' %}) bottom">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="spacer-double sm-hide"></div>
-                        <div class="col-lg-6">
-                            <h4><span class="id-color">Plan your trip now</span></h4>
-                            <div class="spacer-10"></div>
-                            <h1>Explore the world with comfortable car</h1>
-                            <p class="lead">Embark on unforgettable adventures and discover the world in unparalleled comfort and style with our fleet of exceptionally comfortable cars.</p>
+<div class="no-bottom no-top" id="content">
+    <div id="top"></div>
+    <section id="section-hero" aria-label="section" class="jarallax text-light">
+        <img src="{% static 'images/background/15.jpg' %}" class="jarallax-img" alt="">
+        <div class="container">
+            <div class="row">
+                <div class="spacer-double"></div>
+                <div class="col-lg-5 text-light">
+                    <h2 class="mb-2">Looking for a <span class="id-color">vehicle</span>? You're at the right place.</h2>
+                    <div class="spacer-single"></div>
+                </div>
 
-                            <a class="btn-main" href="#">Choose a Car</a>&nbsp;&nbsp;&nbsp;<a class="btn-main btn-black" href="#">Get the App</a>
+                <div class="col-lg-3 offset-lg-4">
+                    <blockquote class="de-quote-small">
+                        <div class="d-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
                         </div>
+                        Excellent Service! Endorsed by industry experts, SaleSawari is the Car buying and selling best solution you can trust!
+                        <span class="by">Dr. Numan</span>
+                    </blockquote>
+                </div>
 
-                        <div class="col-lg-6">
-                            <img src="{% static 'images/misc/car-2.png' %}" class="img-fluid" alt="">
-                        </div>
+            </div>
+
+        <div class="row">
+                <div class="col-lg-12">
+                    <div class="spacer-single sm-hide"></div>
+                    <div class="p-4 rounded-3 shadow-soft" data-bgcolor="rgba(34, 34, 34, .6)">
                         
+
+                        <form name="contactForm" id='contact_form' method="post">
+                            <div id="step-1" class="row">
+
+                                <div class="col-lg-4 mb-sm-30">
+                                    <h5>Pick Up Location</h5>
+                                    <input type="text" name="PickupLocation" onfocus="geolocate()" placeholder="Enter your pickup location" id="autocomplete" autocomplete="off" class="form-control">
+
+                                    <div class="jls-address-preview jls-address-preview--hidden">
+                                        <div class="jls-address-preview__header">
+                                        </div>
+                                    </div>
+
+                                    <div class="spacer-20"></div>
+
+                                    <h5>Pick Up Date & Time</h5>
+                                    <div class="date-time-field">
+                                        <input type="text" id="date-picker" name="Pick Up Date" value="">
+                                        <select name="Pick Up Time" id="pickup-time">
+                                            <option selected disabled value="Select time">Time</option>
+                                            <option value="00:00">00:00</option>
+                                            <option value="00:30">00:30</option>
+                                            <option value="01:00">01:00</option>
+                                            <option value="01:30">01:30</option>
+                                            <option value="02:00">02:00</option>
+                                            <option value="02:30">02:30</option>
+                                            <option value="03:00">03:00</option>
+                                            <option value="03:30">03:30</option>
+                                            <option value="04:00">04:00</option>
+                                            <option value="04:30">04:30</option>
+                                            <option value="05:00">05:00</option>
+                                            <option value="05:30">05:30</option>
+                                            <option value="06:00">06:00</option>
+                                            <option value="06:30">06:30</option>
+                                            <option value="07:00">07:00</option>
+                                            <option value="07:30">07:30</option>
+                                            <option value="08:00">08:00</option>
+                                            <option value="08:30">08:30</option>
+                                            <option value="09:00">09:00</option>
+                                            <option value="09:30">09:30</option>
+                                            <option value="10:00">10:00</option>
+                                            <option value="10:30">10:30</option>
+                                            <option value="11:00">11:00</option>
+                                            <option value="11:30">11:30</option>
+                                            <option value="12:00">12:00</option>
+                                            <option value="12:30">12:30</option>
+                                            <option value="13:00">13:00</option>
+                                            <option value="13:30">13:30</option>
+                                            <option value="14:00">14:00</option>
+                                            <option value="14:30">14:30</option>
+                                            <option value="15:00">15:00</option>
+                                            <option value="15:30">15:30</option>
+                                            <option value="16:00">16:00</option>
+                                            <option value="16:30">16:30</option>
+                                            <option value="17:00">17:00</option>
+                                            <option value="17:30">17:30</option>
+                                            <option value="18:00">18:00</option>
+                                            <option value="18:30">18:30</option>
+                                            <option value="19:00">19:00</option>
+                                            <option value="19:30">19:30</option>
+                                            <option value="20:00">20:00</option>
+                                            <option value="20:30">20:30</option>
+                                            <option value="21:00">21:00</option>
+                                            <option value="21:30">21:30</option>
+                                            <option value="22:00">22:00</option>
+                                            <option value="22:30">22:30</option>
+                                            <option value="23:00">23:00</option>
+                                            <option value="23:30">23:30</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 mb-sm-30">
+                                    <h5>Drop Off Location</h5>
+                                    <input type="text" name="DropoffLocation" onfocus="geolocate()" placeholder="Enter your dropoff location" id="autocomplete2" autocomplete="off" class="form-control">
+
+                                    <div class="jls-address-preview jls-address-preview--hidden">
+                                        <div class="jls-address-preview__header">
+                                        </div>
+                                    </div>
+
+                                    <div class="spacer-20"></div>
+                                    
+                                    <h5>Return Date & Time</h5>
+                                    <div class="date-time-field">
+                                        <input type="text" id="date-picker-2" name="Collection Date" value="">
+                                        <select name="Collection Time" id="collection-time">
+                                            <option selected disabled value="Select time">Time</option>
+                                            <option value="00:00">00:00</option>
+                                            <option value="00:30">00:30</option>
+                                            <option value="01:00">01:00</option>
+                                            <option value="01:30">01:30</option>
+                                            <option value="02:00">02:00</option>
+                                            <option value="02:30">02:30</option>
+                                            <option value="03:00">03:00</option>
+                                            <option value="03:30">03:30</option>
+                                            <option value="04:00">04:00</option>
+                                            <option value="04:30">04:30</option>
+                                            <option value="05:00">05:00</option>
+                                            <option value="05:30">05:30</option>
+                                            <option value="06:00">06:00</option>
+                                            <option value="06:30">06:30</option>
+                                            <option value="07:00">07:00</option>
+                                            <option value="07:30">07:30</option>
+                                            <option value="08:00">08:00</option>
+                                            <option value="08:30">08:30</option>
+                                            <option value="09:00">09:00</option>
+                                            <option value="09:30">09:30</option>
+                                            <option value="10:00">10:00</option>
+                                            <option value="10:30">10:30</option>
+                                            <option value="11:00">11:00</option>
+                                            <option value="11:30">11:30</option>
+                                            <option value="12:00">12:00</option>
+                                            <option value="12:30">12:30</option>
+                                            <option value="13:00">13:00</option>
+                                            <option value="13:30">13:30</option>
+                                            <option value="14:00">14:00</option>
+                                            <option value="14:30">14:30</option>
+                                            <option value="15:00">15:00</option>
+                                            <option value="15:30">15:30</option>
+                                            <option value="16:00">16:00</option>
+                                            <option value="16:30">16:30</option>
+                                            <option value="17:00">17:00</option>
+                                            <option value="17:30">17:30</option>
+                                            <option value="18:00">18:00</option>
+                                            <option value="18:30">18:30</option>
+                                            <option value="19:00">19:00</option>
+                                            <option value="19:30">19:30</option>
+                                            <option value="20:00">20:00</option>
+                                            <option value="20:30">20:30</option>
+                                            <option value="21:00">21:00</option>
+                                            <option value="21:30">21:30</option>
+                                            <option value="22:00">22:00</option>
+                                            <option value="22:30">22:30</option>
+                                            <option value="23:00">23:00</option>
+                                            <option value="23:30">23:30</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 mb30">
+                                    <h5>Vehicle Type</h5>
+                                    <select name='Vehicle Type' id="vehicle_type" class="form-control">
+                                      <option value='option-1' data-src="{% static 'images/select-form/car.png' %}">Car</option>
+                                      <option value='option-2' data-src="{% static 'images/select-form/van.png' %}">Van</option>
+                                      <option value='option-3' data-src="{% static 'images/select-form/minibus.png' %}">Minibus</option>
+                                      <option value='option-3' data-src="{% static 'images/select-form/sportscar.png' %}">Prestige</option>
+                                    </select>
+
+                                    <input type='submit' id='send_message' value='Find a Vehicle' class="btn-main btn-fullwidth pull-right">
+                                </div>
+
+                                </div>
+                            </div>
+                            
+                        </form>
                     </div>
                 </div>
-            </section>
 
-            <section id="section-cars" class="no-top">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6 offset-lg-3 text-center">
-                            <h2>Our Vehicle Fleet</h2>
-                            <p>Driving your dreams to reality with an exquisite fleet of versatile vehicles for unforgettable journeys.</p>
-                            <div class="spacer-20"></div>
-                        </div>
+                <div class="spacer-double"></div>
 
-                        <div class="clearfix"></div>
-
-                        <div id="items-carousel" class="owl-carousel wow fadeIn">
-
-                            <div class="col-lg-12">
-                                <div class="de-item mb30">
-                                    <div class="d-img">
-                                        <img src="{% static 'images/cars/jeep-renegade.jpg' %}" class="img-fluid" alt="">
-                                    </div>
-                                    <div class="d-info">
-                                        <div class="d-text">
-                                            <h4>Jeep Renegade</h4>
-                                            <div class="d-item_like">
-                                                <i class="fa fa-heart"></i><span>74</span>
-                                            </div>
-                                            <div class="d-atr-group">
-                                                <span class="d-atr"><img src="{% static 'images/icons/1.svg' %}" alt="">5</span>
-                                                <span class="d-atr"><img src="{% static 'images/icons/1.svg' %}" alt="">2</span>
-                                                <span class="d-atr"><img src="{% static 'images/icons/1.svg' %}" alt="">4</span>
-                                                <span class="d-atr"><img src="{% static 'images/icons/1.svg' %}" alt="">SUV</span>
-                                            </div>
-                                            <div class="d-price">
-                                                Daily rate from <span>$265</span>
-                                                <a class="btn-main" href="car-single.html">Rent Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-12">
-                                <div class="de-item mb30">
-                                    <div class="d-img">
-                                        <img src="{% static 'images/cars/bmw-m5.jpg' %}" class="img-fluid" alt="">
-                                    </div>
-                                    <div class="d-info">
-                                        <div class="d-text">
-                                            <h4>BMW M2</h4>
-                                            <div class="d-item_like">
-                                                <i class="fa fa-heart"></i><span>36</span>
-                                            </div>
-                                            <div class="d-atr-group">
-                                                <span class="d-atr"><img src="{% static 'images/icons/1.svg' %}" alt="">5</span>
-                                                <span class="d-atr"><img src="{% static 'images/icons/1.svg' %}" alt="">2</span>
-                                                <span class="d-atr"><img src="{% static 'images/icons/1.svg' %}" alt="">4</span>
-                                                <span class="d-atr"><img src="{% static 'images/icons/1.svg' %}" alt="">Sedan</span>
-                                            </div>
-                                            <div class="d-price">
-                                                Daily rate from <span>$244</span>
-                                                <a class="btn-main" href="car-single.html">Rent Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-12">
-                                <div class="de-item mb30">
-                                    <div class="d-img">
-                                        <img src="{% static 'images/cars/ferrari-enzo.jpg' %}" class="img-fluid" alt="">
-                                    </div>
-                                    <div class="d-info">
-                                        <div class="d-text">
-                                            <h4>Ferarri Enzo</h4>
-                                            <div class="d-item_like">
-                                                <i class="fa fa-heart"></i><span>85</span>
-                                            </div>
-                                            <div class="d-atr-group">
-                                                <span class="d-atr"><img src="{% static 'images/icons/1.svg' %}" alt="">5</span>
-                                                <span class="d-atr"><img src="{% static 'images/icons/1.svg' %}" alt="">2</span>
-                                                <span class="d-atr"><img src="{% static 'images/icons/1.svg' %}" alt="">4</span>
-                                                <span class="d-atr"><img src="{% static 'images/icons/1.svg' %}" alt="">Exotic Car</span>
-                                            </div>
-                                            <div class="d-price">
-                                                Daily rate from <span>$167</span>
-                                                <a class="btn-main" href="car-single.html">Rent Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-12">
-                                <div class="de-item mb30">
-                                    <div class="d-img">
-                                        <img src="{% static 'images/cars/ford-raptor.jpg' %}" class="img-fluid" alt="">
-                                    </div>
-                                    <div class="d-info">
-                                        <div class="d-text">
-                                            <h4>Ford Raptor</h4>
-                                            <div class="d-item_like">
-                                                <i class="fa fa-heart"></i><span>59</span>
-                                            </div>
-                                            <div class="d-atr-group">
-                                                <span class="d-atr"><img src="{% static 'images/icons/1.svg' %}" alt="">5</span>
-                                                <span class="d-atr"><img src="{% static 'images/icons/1.svg' %}" alt="">2</span>
-                                                <span class="d-atr"><img src="{% static 'images/icons/1.svg' %}" alt="">4</span>
-                                                <span class="d-atr"><img src="{% static 'images/icons/1.svg' %}" alt="">Pickup Truck</span>
-                                            </div>
-                                            <div class="d-price">
-                                                Daily rate from <span>$147</span>
-                                                <a class="btn-main" href="car-single.html">Rent Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-12">
-                                <div class="de-item mb30">
-                                    <div class="d-img">
-                                        <img src="{% static 'images/cars/mini-cooper.jpg' %}" class="img-fluid" alt="">
-                                    </div>
-                                    <div class="d-info">
-                                        <div class="d-text">
-                                            <h4>Mini Cooper</h4>
-                                            <div class="d-item_like">
-                                                <i class="fa fa-heart"></i><span>19</span>
-                                            </div>
-                                            <div class="d-atr-group">
-                                                <span class="d-atr"><img src="{% static 'images/icons/1.svg' %}" alt="">5</span>
-                                                <span class="d-atr"><img src="{% static 'images/icons/1.svg' %}" alt="">2</span>
-                                                <span class="d-atr"><img src="{% static 'images/icons/1.svg' %}" alt="">4</span>
-                                                <span class="d-atr"><img src="{% static 'images/icons/1.svg' %}" alt="">Hatchback</span>
-                                            </div>
-                                            <div class="d-price">
-                                                Daily rate from <span>$238</span>
-                                                <a class="btn-main" href="car-single.html">Rent Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-12">
-                                <div class="de-item mb30">
-                                    <div class="d-img">
-                                        <img src="{% static 'images/cars/vw-polo.jpg' %}" class="img-fluid" alt="">
-                                    </div>
-                                    <div class="d-info">
-                                        <div class="d-text">
-                                            <h4>VW Polo</h4>
-                                            <div class="d-item_like">
-                                                <i class="fa fa-heart"></i><span>79</span>
-                                            </div>
-                                            <div class="d-atr-group">
-                                                <span class="d-atr"><img src="{% static 'images/icons/1.svg' %}" alt="">5</span>
-                                                <span class="d-atr"><img src="{% static 'images/icons/1.svg' %}" alt="">2</span>
-                                                <span class="d-atr"><img src="{% static 'images/icons/1.svg' %}" alt="">4</span>
-                                                <span class="d-atr"><img src="{% static 'images/icons/1.svg' %}" alt="">Hatchback</span>
-                                            </div>
-                                            <div class="d-price">
-                                                Daily rate from <span>$106</span>
-                                                <a class="btn-main" href="car-single.html">Rent Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-            <section id="section-img-with-tab" data-bgcolor="#f8f8f8">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-5 offset-lg-7">
-                            
-                            <h2>Only Quality For Clients</h2>
-                            <div class="spacer-20"></div>
-                            
-                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                              <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Luxury</button>
-                              </li>
-                              <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Comfort</button>
-                              </li>
-                              <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Prestige</button>
-                              </li>
+                <div class="row">
+                    <div class="col-lg-12 text-light">
+                        <div class="container-timeline">
+                            <ul>
+                                <li>
+                                    <h4>Choose a vehicle</h4>
+                                    <p>Choose your loved Vehicle, bargain with seller and get the best price from local markets. SaleSawari is your expert companion in this regards.</p>
+                                </li>
+                                <li>
+                                    <h4>Want to Sale?</h4>
+                                    <p>Sellers have proper dashboard where they can post your vehicles specification and demand price with multiple features and best UI design.</p>
+                                </li>
+                                <li>
+                                    <h4>Smooth Communication</h4>
+                                    <p>We have one best communication features and technologies like direct seller or buyer WhatsApp or Communication within SaleSawari.</p>
+                                </li>
+                                <li>
+                                    <h4>Strong Security &amp; Payment Control</h4>
+                                    <p>We have used technologies for SaleSawari account holders to protect their private information from hackers and online theifs.</p>
+                                </li>
                             </ul>
-                            <div class="tab-content" id="pills-tabContent">
-                              <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"><p>We offer a meticulously curated collection of the most sought-after luxury vehicles on the market. Whether you prefer the sporty allure of a high-performance sports car, the sophistication of a sleek and luxurious sedan, or the versatility of a premium SUV, we have the perfect car to match your discerning taste.</p></div>
-                              <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"><p>We prioritize your comfort and convenience throughout your journey. We understand that a comfortable ride can make a world of difference, whether you're embarking on a business trip or enjoying a leisurely vacation. That's why we offer a wide range of well-maintained, comfortable cars that cater to your specific needs.</p></div>
-                              <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"><p>We understand that prestige goes beyond luxury. It's about making a statement, embracing sophistication, and indulging in the finer things in life. That's why we offer an exclusive selection of prestigious cars that exude elegance, style, and status.</p></div>
-                            </div>
-                            
                         </div>
                     </div>
                 </div>
-
-                <div class="image-container col-md-6 pull-right" data-bgimage="url({% static 'images/background/5.jpg' %}) center"></div>
-            </section>
-
-            <section>
-                <div class="container">
-                    <div class="row">
-                    <div class="col-lg-3">
-                        <h2>Explore the world with comfortable car</h2>
-                        <div class="spacer-20"></div>
-                    </div>
-                    <div class="col-md-3">
-                        <i class="fa fa-trophy de-icon mb20"></i>
-                        <h4>First Class Services</h4>
-                        <p>Where luxury meets exceptional care, creating unforgettable moments and exceeding your every expectation.</p>
-                    </div>
-                    <div class="col-md-3">
-                        <i class="fa fa-road de-icon mb20"></i>
-                        <h4>24/7 road assistance</h4>
-                        <p>Reliable support when you need it most, keeping you on the move with confidence and peace of mind.</p>
-                    </div>
-                    <div class="col-md-3">
-                        <i class="fa fa-map-pin de-icon mb20"></i>
-                        <h4>Free Pick-Up & Drop-Off</h4>
-                        <p>Enjoy free pickup and drop-off services, adding an extra layer of ease to your car rental experience.</p>
-                    </div>
-                </div>
-                </div>
-            </section>
-
-            <section id="section-testimonials" class="no-top no-bottom">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-md-4">
-                            <div class="de-image-text">
-                                <div class="d-text">
-                                    <div class="d-quote id-color"><i class="fa fa-quote-right"></i></div>
-                                    <h4>Excellent Service! Car Rent Service!</h4>
-                                    <blockquote>
-                                       I have been using Rentaly for my Car Rental needs for over 5 years now. I have never had any problems with their service. Their customer support is always responsive and helpful. I would recommend Rentaly to anyone looking for a reliable Car Rental provider.
-                                       <span class="by">Stepanie Hutchkiss</span>
-                                   </blockquote>
-                                </div> 
-                                <img src="{% static 'images/testimonial/1.jpg' %}" class="img-fluid" alt="">
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-4">
-                            <div class="de-image-text">
-                                <div class="d-text">
-                                    <div class="d-quote id-color"><i class="fa fa-quote-right"></i></div>
-                                    <h4>Excellent Service! Car Rent Service!</h4>
-                                    <blockquote>
-                                       We have been using Rentaly for our trips needs for several years now and have always been happy with their service. Their customer support is Excellent Service! and they are always available to help with any issues we have. Their prices are also very competitive.
-                                       <span class="by">Jovan Reels</span>
-                                   </blockquote>
-                                </div>
-                                <img src="{% static 'images/testimonial/2.jpg' %}" class="img-fluid" alt="">
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-4">
-                            <div class="de-image-text">
-                                <div class="d-text">
-                                    <div class="d-quote id-color"><i class="fa fa-quote-right"></i></div>
-                                    <h4>Excellent Service! Car Rent Service!</h4>
-                                    <blockquote>
-                                       Endorsed by industry experts, Rentaly is the Car Rental solution you can trust. With years of experience in the field, we provide fast, reliable and secure Car Rental services.
-                                       <span class="by">Kanesha Keyton</span>
-                                   </blockquote>
-                                </div>
-                                <img src="{% static 'images/testimonial/3.jpg' %}" class="img-fluid" alt="">
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-            <section id="section-news">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6 offset-lg-3 text-center">
-                            <h2>Latest News</h2>
-                            <p>Breaking news, fresh perspectives, and in-depth coverage - stay ahead with our latest news, insights, and analysis.</p>
-                            <div class="spacer-20"></div>
-                        </div>
-                        
-                        <div class="col-lg-4 mb10">
-                                    <div class="bloglist s2 item">
-                                            <div class="post-content">
-                                                <div class="post-image">
-                                                    <div class="date-box">
-                                                        <div class="m">10</div>
-                                                        <div class="d">MAR</div>
-                                                    </div>
-                                                    <img alt="" src="{% static 'images/news/pic-blog-1.jpg' %}" class="lazy">
-                                                </div>
-                                                <div class="post-text">                                                    
-                                                    <h4><a href="news-single.html">Enjoy Best Travel Experience<span></span></a></h4>
-                                                    <p>Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur.</p>
-                                                    <a class="btn-main" href="#">Read More</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                </div>
-                                
-                                <div class="col-lg-4 mb10">
-                                    <div class="bloglist s2 item">
-                                            <div class="post-content">
-                                                <div class="post-image">
-                                                    <div class="date-box">
-                                                        <div class="m">12</div>
-                                                        <div class="d">MAR</div>
-                                                    </div>
-                                                    <img alt="" src="{% static 'images/news/pic-blog-2.jpg' %}" class="lazy">
-                                                </div>
-                                                <div class="post-text">                                                    
-                                                    <h4><a href="news-single.html">The Future of Car Rent<span></span></a></h4>
-                                                    <p>Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur.</p>
-                                                    <a class="btn-main" href="#">Read More</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                </div>
-                                
-                        <div class="col-lg-4 mb10">
-                        <div class="bloglist s2 item">
-                                <div class="post-content">
-                                    <div class="post-image">
-                                        <div class="date-box">
-                                            <div class="m">14</div>
-                                            <div class="d">MAR</div>
-                                        </div>
-                                        <img alt="" src="{% static 'images/news/pic-blog-3.jpg' %}" class="lazy">
-                                    </div>
-                                    <div class="post-text">                                                    
-                                        <h4><a href="news-single.html">Holiday Tips For Backpacker<span></span></a></h4>
-                                        <p>Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur.</p>
-                                        <a class="btn-main" href="#">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="section-fun-facts" class="bg-color text-light">
-                <div class="container">
-                    <div class="row g-custom-x force-text-center">
-                        <div class="col-md-3 col-sm-6 mb-sm-30">
-                            <div class="de_count wow fadeInUp">
-                                <h3 class="timer" data-to="15425" data-speed="3000">0</h3>
-                                Trips Powered
-                                <p class="d-small">Lorem ipsum adipisicing officia in adipisicing do velit sit tempor ea consectetur.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6 mb-sm-30">
-                            <div class="de_count wow fadeInUp">
-                                <h3 class="timer" data-to="8745" data-speed="3000">0</h3>
-                                Happy Customers
-                                <p class="d-small">Lorem ipsum adipisicing officia in adipisicing do velit sit tempor ea consectetur.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6 mb-sm-30">
-                            <div class="de_count wow fadeInUp">
-                                <h3 class="timer" data-to="235" data-speed="3000">0</h3>
-                                Fleets Vehicle
-                                <p class="d-small">Lorem ipsum adipisicing officia in adipisicing do velit sit tempor ea consectetur.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6 mb-sm-30">
-                            <div class="de_count wow fadeInUp">
-                                <h3 class="timer" data-to="15" data-speed="3000">0</h3>
-                                Years Experience
-                                <p class="d-small">Lorem ipsum adipisicing officia in adipisicing do velit sit tempor ea consectetur.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section aria-label="section" class="pt40 pb40 text-light" data-bgcolor="#181818">
-                <div class="wow fadeInRight d-flex">
-                  <div class="de-marquee-list">
-                    <div class="d-item">
-                      <span class="d-item-txt">SUV</span>
-                      <span class="d-item-display">
-                        <i class="d-item-dot"></i>
-                      </span>
-                      <span class="d-item-txt">Hatchback</span>
-                      <span class="d-item-display">
-                        <i class="d-item-dot"></i>
-                      </span>
-                      <span class="d-item-txt">Crossover</span>
-                      <span class="d-item-display">
-                        <i class="d-item-dot"></i>
-                      </span>
-                      <span class="d-item-txt">Convertible</span>
-                      <span class="d-item-display">
-                        <i class="d-item-dot"></i>
-                      </span>
-                      <span class="d-item-txt">Sedan</span>
-                      <span class="d-item-display">
-                        <i class="d-item-dot"></i>
-                      </span>
-                      <span class="d-item-txt">Sports Car</span>
-                      <span class="d-item-display">
-                        <i class="d-item-dot"></i>
-                      </span>
-                      <span class="d-item-txt">Coupe</span>
-                      <span class="d-item-display">
-                        <i class="d-item-dot"></i>
-                      </span>
-                      <span class="d-item-txt">Minivan</span>
-                      <span class="d-item-display">
-                        <i class="d-item-dot"></i>
-                      </span>
-                      <span class="d-item-txt">Station Wagon</span>
-                      <span class="d-item-display">
-                        <i class="d-item-dot"></i>
-                      </span>
-                      <span class="d-item-txt">Pickup Truck</span>
-                      <span class="d-item-display">
-                        <i class="d-item-dot"></i>
-                      </span>
-                      <span class="d-item-txt">Minivans</span>
-                      <span class="d-item-display">
-                        <i class="d-item-dot"></i>
-                      </span>
-                      <span class="d-item-txt">Exotic Cars</span>
-                      <span class="d-item-display">
-                        <i class="d-item-dot"></i>
-                      </span>
-                     </div>
-                  </div>
-
-                  <div class="de-marquee-list">
-                    <div class="d-item">
-                      <span class="d-item-txt">SUV</span>
-                      <span class="d-item-display">
-                        <i class="d-item-dot"></i>
-                      </span>
-                      <span class="d-item-txt">Hatchback</span>
-                      <span class="d-item-display">
-                        <i class="d-item-dot"></i>
-                      </span>
-                      <span class="d-item-txt">Crossover</span>
-                      <span class="d-item-display">
-                        <i class="d-item-dot"></i>
-                      </span>
-                      <span class="d-item-txt">Convertible</span>
-                      <span class="d-item-display">
-                        <i class="d-item-dot"></i>
-                      </span>
-                      <span class="d-item-txt">Sedan</span>
-                      <span class="d-item-display">
-                        <i class="d-item-dot"></i>
-                      </span>
-                      <span class="d-item-txt">Sports Car</span>
-                      <span class="d-item-display">
-                        <i class="d-item-dot"></i>
-                      </span>
-                      <span class="d-item-txt">Coupe</span>
-                      <span class="d-item-display">
-                        <i class="d-item-dot"></i>
-                      </span>
-                      <span class="d-item-txt">Minivan</span>
-                      <span class="d-item-display">
-                        <i class="d-item-dot"></i>
-                      </span>
-                      <span class="d-item-txt">Station Wagon</span>
-                      <span class="d-item-display">
-                        <i class="d-item-dot"></i>
-                      </span>
-                      <span class="d-item-txt">Pickup Truck</span>
-                      <span class="d-item-display">
-                        <i class="d-item-dot"></i>
-                      </span>
-                      <span class="d-item-txt">Minivans</span>
-                      <span class="d-item-display">
-                        <i class="d-item-dot"></i>
-                      </span>
-                      <span class="d-item-txt">Exotic Cars</span>
-                      <span class="d-item-display">
-                        <i class="d-item-dot"></i>
-                      </span>
-                     </div>
-                  </div>
-                </div>
-            </section>
-            
+            </div>
         </div>
-        <!-- content close -->
+    </section>
+
+    <section id="section-cars">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 offset-lg-3 text-center">
+                    <h2>In Demand these days</h2>
+                    <p>Driving your dreams to reality with an exquisite fleet of versatile vehicles for unforgettable journeys.</p>
+                    <div class="spacer-20"></div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div id="items-carousel-alt-2" class="owl-carousel wow fadeIn">
+
+                    <div class="col-lg-12">
+                        <div class="de-item alt-2 mb30">
+                            <div class="d-img">
+                                <img src="{% static 'images/cars-alt/jeep-renegade.png' %}" class="img-fluid" alt="">
+                            </div>
+                            <div class="d-info">
+                                <div class="d-text">
+                                    <h4>Jeep Renegade</h4>
+                                    <div class="d-item_like">
+                                        <i class="fa fa-heart"></i><span>74</span>
+                                    </div>
+                                    <div class="d-atr-group">
+                                        <span class="d-atr"><img src="{% static 'images/icons/1-green.svg' %}" alt="">5</span>
+                                        <span class="d-atr"><img src="{% static 'images/icons/2-green.svg' %}" alt="">2</span>
+                                        <span class="d-atr"><img src="{% static 'images/icons/3-green.svg' %}" alt="">4</span>
+                                        <span class="d-atr"><img src="{% static 'images/icons/4-green.svg' %}" alt="">SUV</span>
+                                    </div>
+                                    <div class="d-price">
+                                        Daily rate from <span>$265</span>
+                                        <a class="btn-main" href="02_dark-car-single.html">Rent Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="de-item alt-2 mb30">
+                            <div class="d-img">
+                                <img src="{% static 'images/cars-alt/jeep-renegade.png' %}" class="img-fluid" alt="">
+                            </div>
+                            <div class="d-info">
+                                <div class="d-text">
+                                    <h4>Jeep Renegade</h4>
+                                    <div class="d-item_like">
+                                        <i class="fa fa-heart"></i><span>74</span>
+                                    </div>
+                                    <div class="d-atr-group">
+                                        <span class="d-atr"><img src="{% static 'images/icons/1-green.svg' %}" alt="">5</span>
+                                        <span class="d-atr"><img src="{% static 'images/icons/2-green.svg' %}" alt="">2</span>
+                                        <span class="d-atr"><img src="{% static 'images/icons/3-green.svg' %}" alt="">4</span>
+                                        <span class="d-atr"><img src="{% static 'images/icons/4-green.svg' %}" alt="">SUV</span>
+                                    </div>
+                                    <div class="d-price">
+                                        Daily rate from <span>$265</span>
+                                        <a class="btn-main" href="02_dark-car-single.html">Rent Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="de-item alt-2 mb30">
+                            <div class="d-img">
+                                <img src="{% static 'images/cars-alt/jeep-renegade.png' %}" class="img-fluid" alt="">
+                            </div>
+                            <div class="d-info">
+                                <div class="d-text">
+                                    <h4>Jeep Renegade</h4>
+                                    <div class="d-item_like">
+                                        <i class="fa fa-heart"></i><span>74</span>
+                                    </div>
+                                    <div class="d-atr-group">
+                                        <span class="d-atr"><img src="{% static 'images/icons/1-green.svg' %}" alt="">5</span>
+                                        <span class="d-atr"><img src="{% static 'images/icons/2-green.svg' %}" alt="">2</span>
+                                        <span class="d-atr"><img src="{% static 'images/icons/3-green.svg' %}" alt="">4</span>
+                                        <span class="d-atr"><img src="{% static 'images/icons/4-green.svg' %}" alt="">SUV</span>
+                                    </div>
+                                    <div class="d-price">
+                                        Daily rate from <span>$265</span>
+                                        <a class="btn-main" href="02_dark-car-single.html">Rent Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="de-item alt-2 mb30">
+                            <div class="d-img">
+                                <img src="{% static 'images/cars-alt/jeep-renegade.png' %}" class="img-fluid" alt="">
+                            </div>
+                            <div class="d-info">
+                                <div class="d-text">
+                                    <h4>Jeep Renegade</h4>
+                                    <div class="d-item_like">
+                                        <i class="fa fa-heart"></i><span>74</span>
+                                    </div>
+                                    <div class="d-atr-group">
+                                        <span class="d-atr"><img src="{% static 'images/icons/1-green.svg' %}" alt="">5</span>
+                                        <span class="d-atr"><img src="{% static 'images/icons/2-green.svg' %}" alt="">2</span>
+                                        <span class="d-atr"><img src="{% static 'images/icons/3-green.svg' %}" alt="">4</span>
+                                        <span class="d-atr"><img src="{% static 'images/icons/4-green.svg' %}" alt="">SUV</span>
+                                    </div>
+                                    <div class="d-price">
+                                        Daily rate from <span>$265</span>
+                                        <a class="btn-main" href="02_dark-car-single.html">Rent Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="de-item alt-2 mb30">
+                            <div class="d-img">
+                                <img src="{% static 'images/cars-alt/jeep-renegade.png' %}" class="img-fluid" alt="">
+                            </div>
+                            <div class="d-info">
+                                <div class="d-text">
+                                    <h4>Jeep Renegade</h4>
+                                    <div class="d-item_like">
+                                        <i class="fa fa-heart"></i><span>74</span>
+                                    </div>
+                                    <div class="d-atr-group">
+                                        <span class="d-atr"><img src="{% static 'images/icons/1-green.svg' %}" alt="">5</span>
+                                        <span class="d-atr"><img src="{% static 'images/icons/2-green.svg' %}" alt="">2</span>
+                                        <span class="d-atr"><img src="{% static 'images/icons/3-green.svg' %}" alt="">4</span>
+                                        <span class="d-atr"><img src="{% static 'images/icons/4-green.svg' %}" alt="">SUV</span>
+                                    </div>
+                                    <div class="d-price">
+                                        Daily rate from <span>$265</span>
+                                        <a class="btn-main" href="02_dark-car-single.html">Rent Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="de-item alt-2 mb30">
+                            <div class="d-img">
+                                <img src="{% static 'images/cars-alt/jeep-renegade.png' %}" class="img-fluid" alt="">
+                            </div>
+                            <div class="d-info">
+                                <div class="d-text">
+                                    <h4>Jeep Renegade</h4>
+                                    <div class="d-item_like">
+                                        <i class="fa fa-heart"></i><span>74</span>
+                                    </div>
+                                    <div class="d-atr-group">
+                                        <span class="d-atr"><img src="{% static 'images/icons/1-green.svg' %}" alt="">5</span>
+                                        <span class="d-atr"><img src="{% static 'images/icons/2-green.svg' %}" alt="">2</span>
+                                        <span class="d-atr"><img src="{% static 'images/icons/3-green.svg' %}" alt="">4</span>
+                                        <span class="d-atr"><img src="{% static 'images/icons/4-green.svg' %}" alt="">SUV</span>
+                                    </div>
+                                    <div class="d-price">
+                                        Daily rate from <span>$265</span>
+                                        <a class="btn-main" href="02_dark-car-single.html">Rent Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="text-light jarallax">
+        <img src="{% static 'images/background/9.jpg' %}" class="jarallax-img" alt="">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6 wow fadeInRight">
+                    <h2>Discover Your Next Ride or Sell Your Car Easily on SaleSawari.</h2>
+                </div>
+                <div class="col-lg-6 wow fadeInLeft">
+                    Welcome to SaleSawari, your premier online marketplace for buying and selling vehicles. 
+                    Whether you're in the market for a commercial car, a luxury vehicle, or looking to sell your own, 
+                    SaleSawari has you covered. Our platform is designed to provide a seamless experience for both buyers 
+                    and sellers, ensuring that you can list your car quickly and find your perfect vehicle effortlessly. 
+                    From stylish sedans to spacious SUVs, our diverse inventory caters to all needs and budgets. 
+                    With user-friendly features and competitive prices, SaleSawari is your go-to destination 
+                    for all your vehicle needs. Experience the convenience and reliability of our service today, 
+                    whether you're planning a business trip, a family vacation, or simply want to upgrade your ride.
+                </div>
+            </div>
+            <div class="spacer-double"></div>
+            <div class="row text-center">
+                <div class="col-md-3 col-sm-6 mb-sm-30">
+                    <div class="de_count transparent text-light wow fadeInUp" data-bgcolor="rgba(32, 32, 32, .5)">
+                        <h3 class="timer" data-to="15425" data-speed="3000">0</h3>
+                        Listed Vehicles
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-sm-30">
+                    <div class="de_count transparent text-light wow fadeInUp" data-bgcolor="rgba(32, 32, 32, .5)">
+                        <h3 class="timer" data-to="8745" data-speed="3000">0</h3>
+                        Completed Orders
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-sm-30">
+                    <div class="de_count transparent text-light wow fadeInUp" data-bgcolor="rgba(32, 32, 32, .5)">
+                        <h3 class="timer" data-to="235" data-speed="3000">0</h3>
+                        Sellers
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-sm-30">
+                    <div class="de_count transparent text-light wow fadeInUp" data-bgcolor="rgba(32, 32, 32, .5)">
+                        <h3 class="timer" data-to="78787" data-speed="3000">0</h3>
+                        Support Tickets
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section aria-label="section" class="no-bottom">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 offset-lg-3 text-center">
+                    <h2>Our Features</h2>
+                    <p>Discover a world of convenience, safety, and customization, paving the way for unforgettable adventures and seamless mobility solutions.</p>
+                    <div class="spacer-20"></div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-lg-3">
+                    <div class="box-icon s2 p-small mb20 wow fadeInRight" data-wow-delay=".5s">
+                        <i class="fa bg-color fa-trophy"></i>
+                        <div class="d-inner">
+                            <h4>First class services</h4>
+                            Where luxury meets exceptional care, creating unforgettable moments and exceeding your every expectation.
+                        </div>
+                    </div>
+                    <div class="box-icon s2 p-small mb20 wow fadeInL fadeInRight" data-wow-delay=".75s">
+                        <i class="fa bg-color fa-road"></i>
+                        <div class="d-inner">
+                            <h4>24/7 road assistance</h4>
+                             Reliable support when you need it most, keeping you on the move with confidence and peace of mind.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <img src="{% static 'images/misc/car-2.png' %}" alt="" class="img-fluid wow fadeInUp">
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="box-icon s2 d-invert p-small mb20 wow fadeInL fadeInLeft" data-wow-delay="1s">
+                        <i class="fa bg-color fa-tag"></i>
+                        <div class="d-inner">
+                            <h4>Quality at Minimum Expense</h4>
+                             Unlocking affordable brilliance with elevating quality while minimizing costs for maximum value.
+                        </div>
+                    </div>
+                    <div class="box-icon s2 d-invert p-small mb20 wow fadeInL fadeInLeft" data-wow-delay="1.25s">
+                        <i class="fa bg-color fa-map-pin"></i>
+                        <div class="d-inner">
+                            <h4>Free Pick-Up & Drop-Off</h4>
+                             Enjoy free pickup and drop-off services, adding an extra layer of ease to your car rental experience.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="section-testimonials" class="no-top no-bottom">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+
+                <div class="col-md-4 wow fadeInUp">
+                    <div class="de-image-text">
+                        <div class="d-text">
+                            <div class="d-rating mb10">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <h4>Excellent Service! Car Rent Service!</h4>
+                            <blockquote>
+                               I have been using Rentaly for my Car Rental needs for over 5 years now. I have never had any problems with their service. Their customer support is always responsive and helpful. I would recommend Rentaly to anyone looking for a reliable Car Rental provider.
+                               <span class="by">Stepanie Hutchkiss</span>
+                           </blockquote>
+                        </div> 
+                        <img src="{% static 'images/testimonial/1.jpg' %}" class="img-fluid" alt="">
+                    </div>
+                </div>
+
+
+                <div class="col-md-4 wow fadeInUp">
+                    <div class="spacer-double sm-hide"></div>
+                    <div class="spacer-double sm-hide"></div>
+                    <div class="de-image-text">
+                        <div class="d-text">
+                            <div class="d-rating mb10">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <h4>Excellent Service! Car Rent Service!</h4>
+                            <blockquote>
+                               We have been using Rentaly for our trips needs for several years now and have always been happy with their service. Their customer support is Excellent Service! and they are always available to help with any issues we have. Their prices are also very competitive.
+                               <span class="by">Jovan Reels</span>
+                           </blockquote>
+                        </div>
+                        <img src="{% static 'images/testimonial/2.jpg' %}" class="img-fluid" alt="">
+                    </div>
+                </div>
+                
+                <div class="col-md-4 wow fadeInUp">
+                    <div class="spacer-double sm-hide"></div>
+                    <div class="spacer-double sm-hide"></div>
+                    <div class="spacer-double sm-hide"></div>
+                    <div class="spacer-double sm-hide"></div>
+                    <div class="de-image-text">
+                        <div class="d-text">
+                            <div class="d-rating mb10">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <h4>Excellent Service! Car Rent Service!</h4>
+                            <blockquote>
+                               Endorsed by industry experts, Rentaly is the Car Rental solution you can trust. With years of experience in the field, we provide fast, reliable and secure Car Rental services.
+                               <span class="by">Kanesha Keyton</span>
+                           </blockquote>
+                        </div>
+                        <img src="{% static 'images/testimonial/3.jpg' %}" class="img-fluid" alt="">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>            
+
+    <section id="section-news">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 offset-lg-3 text-center">
+                    <h2>Latest News</h2>
+                    <p>Breaking news, fresh perspectives, and in-depth coverage - stay ahead with our latest news, insights, and analysis.</p>
+                    <div class="spacer-20"></div>
+                </div>
+                
+                <div class="col-lg-4 mb10">
+                    <div class="bloglist s2 item">
+                        <div class="post-content">
+                            <div class="post-image">
+                                <div class="date-box">
+                                    <div class="m">10</div>
+                                    <div class="d">MAR</div>
+                                </div>
+                                <img alt="" src="{% static 'images/news/pic-blog-1.jpg' %}" class="lazy">
+                            </div>
+                            <div class="post-text">                         
+                                <h4><a href="news-single.html">Enjoy Best Travel Experience<span></span></a></h4>
+                                <p>Traveling is an enriching experience that allows us to explore new destinations, immerse ourselves in different cultures, and create lifelong memories.</p>
+                                <a class="btn-line" href="#">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                        
+                <div class="col-lg-4 mb10">
+                    <div class="bloglist s2 item">
+                        <div class="post-content">
+                            <div class="post-image">
+                                <div class="date-box">
+                                    <div class="m">12</div>
+                                    <div class="d">MAR</div>
+                                </div>
+                                <img alt="" src="{% static 'images/news/pic-blog-2.jpg' %}" class="lazy">
+                            </div>
+                            <div class="post-text">                           
+                                <h4><a href="news-single.html">The Future of Car Rent<span></span></a></h4>
+                                <p>As technology continues to advance at a rapid pace, the car rental industry is poised for a transformative shift. The future of car rental promises..</p>
+                                <a class="btn-line" href="#">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                        
+                <div class="col-lg-4 mb10">
+                    <div class="bloglist s2 item">
+                        <div class="post-content">
+                            <div class="post-image">
+                                <div class="date-box">
+                                    <div class="m">14</div>
+                                    <div class="d">MAR</div>
+                                </div>
+                                <img alt="" src="{% static 'images/news/pic-blog-3.jpg' %}" class="lazy">
+                            </div>
+                            <div class="post-text">                            
+                                <h4><a href="news-single.html">Holiday Tips For Backpacker<span></span></a></h4>
+                                <p>For adventure seekers and budget-conscious travelers, backpacking offers a thrilling and immersive way to explore the world. Whether you're embarking..</p>
+                                <a class="btn-line" href="#">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="text-light jarallax" aria-label="section">
+        <img src="{% static 'images/background/3.jpg' %}" alt="" class="jarallax-img">
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-3">
+                <h1>Let's Your Adventure Begin</h1>
+                <div class="spacer-20"></div>
+            </div>
+            <div class="col-md-3">
+                <i class="fa fa-trophy de-icon mb20"></i>
+                <h4>Top Seller Award</h4>
+                <p>Recognizes users who have successfully sold the highest number of vehicles on SaleSawari in a given year.</p>
+            </div>
+            <div class="col-md-3">
+                <i class="fa fa-road de-icon mb20"></i>
+                <h4>Customer Satisfaction Champion</h4>
+                <p>Awarded to sellers who receive consistently high ratings and positive feedback from buyers on SaleSawari.</p>
+            </div>
+            <div class="col-md-3">
+                <i class="fa fa-map-pin de-icon mb20"></i>
+                <h4>Fastest Growing Seller</h4>
+                <p>Honors sellers who have shown the most significant growth in listings and sales within a short period on SaleSawari.</p>
+            </div>
+        </div>
+        </div>
+    </section>       
+
+    <section id="section-faq">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <h2>Have sQuestions about SaleSawari?</h2>
+                    <div class="spacer-20"></div>
+                </div>
+            </div>
+            <div class="row g-custom-x">
+                <div class="col-md-6 wow fadeInUp">
+                    <div class="accordion secondary">
+                        <div class="accordion-section">
+                            <div class="accordion-section-title" data-tab="#accordion-1">
+                                How do I list my car for sale on SaleSawari?
+                            </div>
+                            <div class="accordion-section-content" id="accordion-1">
+                                <p>To list your car on SaleSawari, simply create an account, navigate to the "Sell Your Car" section, and follow the prompts to provide your vehicle details and upload photos. SaleSawari makes it easy to reach potential buyers.</p>
+                            </div>
+                            <div class="accordion-section-title" data-tab="#accordion-2">
+                                What types of vehicles can I find on SaleSawari?
+                            </div>
+                            <div class="accordion-section-content" id="accordion-2">
+                                <p>SaleSawari offers a wide range of vehicles, including commercial cars, luxury vehicles, sedans, SUVs, and more. Whatever your needs, SaleSawari has a diverse inventory to choose from.</p>
+                            </div>
+                            <div class="accordion-section-title" data-tab="#accordion-3">
+                                Is there a fee to list my car on SaleSawari?
+                            </div>
+                            <div class="accordion-section-content" id="accordion-3">
+                                <p>Listing your car on SaleSawari may involve a nominal fee, which helps us maintain a high-quality platform for buyers and sellers. Check our pricing page for specific details on listing fees.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 wow fadeInUp">
+                    <div class="accordion secondary">
+                        <div class="accordion-section">
+                            <div class="accordion-section-title" data-tab="#accordion-b-4">
+                                How can I ensure a safe transaction on SaleSawari?
+                            </div>
+                            <div class="accordion-section-content" id="accordion-b-4">
+                                <p>SaleSawari prioritizes your safety by providing secure communication channels and verifying user profiles. Always use SaleSawari's messaging system and follow our safety tips for secure transactions.</p>
+                            </div>
+                            <div class="accordion-section-title" data-tab="#accordion-b-5">
+                                Can I negotiate prices on SaleSawari?
+                            </div>
+                            <div class="accordion-section-content" id="accordion-b-5">
+                                <p>Yes, SaleSawari allows buyers and sellers to negotiate prices directly through our platform. Use SaleSawari's messaging system to discuss and agree on a fair price.</p>
+                            </div>
+                            <div class="accordion-section-title" data-tab="#accordion-b-6">
+                                What should I do if I encounter an issue with a transaction on SaleSawari?
+                            </div>
+                            <div class="accordion-section-content" id="accordion-b-6">
+                                <p>If you encounter any issues, please contact SaleSawari's customer support team. We are here to help resolve any problems and ensure a smooth experience on SaleSawari.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section aria-label="section" class="pt40 pb40 text-light" data-bgcolor="#111111">
+        <div class="wow fadeInRight d-flex">
+          <div class="de-marquee-list">
+            <div class="d-item">
+              <span class="d-item-txt">SaleSawari</span>
+              <span class="d-item-display">
+                <i class="d-item-dot"></i>
+              </span>
+              <span class="d-item-txt">SaleSawari Support</span>
+              <span class="d-item-display">
+                <i class="d-item-dot"></i>
+              </span>
+              <span class="d-item-txt">SaleSawari Buyers</span>
+              <span class="d-item-display">
+                <i class="d-item-dot"></i>
+              </span>
+              <span class="d-item-txt">SaleSawari Sellers</span>
+              <span class="d-item-display">
+                <i class="d-item-dot"></i>
+              </span>
+              <span class="d-item-txt">SaleSawari Vehicles</span>
+              <span class="d-item-display">
+                <i class="d-item-dot"></i>
+              </span>
+              <span class="d-item-txt">SaleSawari Team</span>
+              <span class="d-item-display">
+                <i class="d-item-dot"></i>
+              </span>
+              <span class="d-item-txt">SaleSawari Dashboard</span>
+              <span class="d-item-display">
+                <i class="d-item-dot"></i>
+              </span>
+              <span class="d-item-txt">SaleSawari Secure Payments</span>
+              <span class="d-item-display">
+                <i class="d-item-dot"></i>
+              </span>
+              <span class="d-item-txt">SaleSawari Account Protection</span>
+              <span class="d-item-display">
+                <i class="d-item-dot"></i>
+              </span>
+              <span class="d-item-txt">PSaleSawari Lucky Draw</span>
+              <span class="d-item-display">
+                <i class="d-item-dot"></i>
+              </span>
+              <span class="d-item-txt">SaleSawari Partners</span>
+              <span class="d-item-display">
+                <i class="d-item-dot"></i>
+              </span>
+              <span class="d-item-txt">SaleSawari Head Office</span>
+              <span class="d-item-display">
+                <i class="d-item-dot"></i>
+              </span>
+             </div>
+          </div>
+        </div>
+    </section>
+</div>
 {% endblock content %}
     
