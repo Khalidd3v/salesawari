@@ -27,6 +27,7 @@
                 <div class="col-md-8 offset-md-2">
                     <h3>Don't have buyer account? Register now.</h3>
                     <p>You can register SaleSawari Account completely free with no hidden fees. We care our user privacy and data.</p>
+                    {% if messages %} {% for m in messages %} <p class="text-success">{{m}}</p> {% endfor %} {% endif %}
                     <div id="buyer-register-container">
                         <div class="spacer-10"></div>
                         <form class="form-border" method="post">

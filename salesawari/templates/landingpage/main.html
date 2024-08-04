@@ -144,8 +144,12 @@
                             </div>
                             <div class="de-flex-col">
                                 <div class="menu_side_area">
+                                    {% if request.user.is_authenticated %}
+                                    {% if request.user.is_seller %} <a href="" class="btn-main">Seller Dashboard</a>{% else %}<a href="" class="btn-main">Buyer Dashboard</a>{% endif %}
+                                    {% else %}
                                     <a href="{% url 'register_user' %}" class="btn-main">Sign Up</a>
-                                    <a href="login.html" class="btn-main">Sign In</a>
+                                    <a href="{% url 'login_user' %}" class="btn-main">Sign In</a>
+                                    {% endif %}
                                     <span id="menu-btn"></span>
                                 </div>
                             </div>

@@ -27,6 +27,7 @@
                 <div class="col-md-8 offset-md-2">
                     <h3>Don't have seller account? Register now.</h3>
                     <p>You can register SaleSawari Account completely free with no hidden fees. We care our user privacy and data.</p>
+                    {% if messages %} {% for m in messages %} <p class="text-success">{{m}}</p> {% endfor %} {% endif %}
                     <div id="seller-register-container">
                         <div class="spacer-10"></div>
                         <form class="form-border" method="post">
@@ -60,13 +61,13 @@
                                 <div class="col-md-6">
                                     <div class="field-set">
                                         <label>Password:</label>
-                                        <input type='text' name='seller-password' id='seller-password' class="form-control">
+                                        <input type='password' name='seller-password' id='seller-password' class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6 mt-2">
                                     <div class="field-set">
                                         <label>Re-enter Password:</label>
-                                        <input type='text' name='seller-re-password' id='seller-re-password' class="form-control">
+                                        <input type='password' name='seller-re-password' id='seller-re-password' class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -76,6 +77,7 @@
                                 </div>
                             </div>
                         </form>
+                        
                     </div>
                 </div>
             </div>
