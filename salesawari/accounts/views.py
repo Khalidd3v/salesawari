@@ -60,6 +60,7 @@ def seller_registration(request):
         user.save()
 
         messages.success(request, "Seller registration successful!")
+        login(request, user)
         return redirect('homepage')
 
     return render(request, 'accounts/seller_register.html')
@@ -115,6 +116,7 @@ def buyer_registration(request):
             user.save()
 
             messages.success(request, "Seller registration successful!")
+            login(request, user)
             return redirect('homepage')
         
     return render(request, 'accounts/buyer_register.html')
@@ -138,3 +140,22 @@ def seller_login(request):
             return redirect('seller_login')
         
     return render(request, 'accounts/seller_login.html')
+
+def buyer_login(request):
+    if request.method == 'POST':
+        email = request.POST.get('buyer-login-email')
+        password = request.POST.get('buyer-login-password')
+
+        if not email and password:
+            messages.error(request, 'Please enter your email or password!')
+            return redirect('buyer_login')
+        
+        user = authenticate(email=email, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('homepage')
+        else:
+            messages.error(request, 'Email or password is wrong!')
+            return redirect('buyer_login')
+        
+    return render(request, 'accounts/buyer_login.html')

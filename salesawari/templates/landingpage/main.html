@@ -145,10 +145,20 @@
                             <div class="de-flex-col">
                                 <div class="menu_side_area">
                                     {% if request.user.is_authenticated %}
-                                    {% if request.user.is_seller %} <a href="" class="btn-main">Seller Dashboard</a>{% else %}<a href="" class="btn-main">Buyer Dashboard</a>{% endif %}
+                                        {% if request.user.is_seller %}
+                                            <a href="" class="btn-main">Dashboard</a>
+                                        {% else %}
+                                            <a href="{% url 'buyer_dashboard' %}" class="btn-main">Dashboard</a>
+                                        {% endif %}
+                                        
+                                        <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-danger">Logout</button>
+                                        </form>
+                                        
                                     {% else %}
-                                    <a href="{% url 'register_user' %}" class="btn-main">Sign Up</a>
-                                    <a href="{% url 'login_user' %}" class="btn-main">Sign In</a>
+                                        <a href="{% url 'register_user' %}" class="btn-main">Sign Up</a>
+                                        <a href="{% url 'login_user' %}" class="btn-main">Sign In</a>
                                     {% endif %}
                                     <span id="menu-btn"></span>
                                 </div>
