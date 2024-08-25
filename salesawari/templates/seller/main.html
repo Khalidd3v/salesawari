@@ -201,9 +201,9 @@
                             <div class="row">
                                 <div class="col-md-12 text-center">
 									<h1>
-                  {% block buyer_page_title %}
+                  {% block seller_page_title %}
                     
-                  {% endblock buyer_page_title %}
+                  {% endblock seller_page_title %}
                     </h1>
                                 </div>
                                 <div class="clearfix"></div>
@@ -231,8 +231,8 @@
                                 </div>
                                 <div class="spacer-20"></div>
                                 <ul class="menu-col">
-                                    <li><a href="{% url 'buyer_dashboard' %}" class=""><i class="fa fa-home"></i>Dashboard</a></li>
-                                    <li><a href="{% url 'buyer_profile' %}"><i class="fa fa-user"></i>My Profile</a></li>
+                                    <li><a href="{% url 'seller_dashboard' %}" class=""><i class="fa fa-home"></i>Dashboard</a></li>
+                                    <li><a href="{% url 'seller_profile' %}"><i class="fa fa-user"></i>My Profile</a></li>
                                     <li><a href="account-booking.html"><i class="fa fa-calendar"></i>My Orders</a></li>
                                     <li><a href="account-favorite.html"><i class="fa fa-car"></i>My Favorite Cars</a></li>
                                     <li><a href="login.html"><i class="fa fa-sign-out"></i>Sign Out</a></li>
@@ -241,9 +241,9 @@
                         </div>
 
                        
-                       {% block buyer_content %}
+                       {% block seller_content %}
                         
-                       {% endblock buyer_content %}
+                       {% endblock seller_content %}
                         
                     </div>
                 </div>

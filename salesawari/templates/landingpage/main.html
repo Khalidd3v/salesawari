@@ -146,7 +146,7 @@
                                 <div class="menu_side_area">
                                     {% if request.user.is_authenticated %}
                                         {% if request.user.is_seller %}
-                                            <a href="" class="btn-main">Dashboard</a>
+                                            <a href="{% url 'seller_dashboard' %}" class="btn-main">Dashboard</a>
                                         {% else %}
                                             <a href="{% url 'buyer_dashboard' %}" class="btn-main">Dashboard</a>
                                         {% endif %}
