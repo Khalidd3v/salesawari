@@ -1889,26 +1889,62 @@
          });
 
          jQuery(".d-item_like").on("click", function() {
-             var iteration = $(this).data('iteration') || 1;
-             
-             switch (iteration) {
-                 case 1:
-                     $(this).find("i").addClass("active");
-                     var val = parseInt($(this).find("span").text())+1;
-                     $(this).find("span").text(val);
-                     break;
-                 case 2:
-                     $(this).find("i").removeClass("active");
-                     var val = parseInt($(this).find("span").text())-1;
-                     $(this).find("span").text(val);                   
-                     break;
-             }
-             iteration++;
-             if (iteration > 2) iteration = 1;
-             $(this).data('iteration', iteration);
-         });
-
-
+            var $this = $(this);
+            var vehicleId = $this.data('vehicle-id');
+            var iteration = $this.data('iteration') || 1;
+        
+            switch (iteration) {
+                case 1:
+                    $this.find("i").addClass("active");
+                    var newCount = parseInt($this.find("span").text()) + 1;
+                    break;
+                case 2:
+                    $this.find("i").removeClass("active");
+                    var newCount = parseInt($this.find("span").text()) - 1;
+                    break;
+            }
+            iteration++;
+            if (iteration > 2) iteration = 1;
+            $this.data('iteration', iteration);
+        
+            fetch('/api/favorite-vehicle/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Token ${token}`
+                },
+                body: JSON.stringify({ 'vehicle_id': vehicleId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'error') {
+                    if (data.message === 'Authentication credentials were not provided.') {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Login Required',
+                            text: 'You need to be logged in to favorite this vehicle.',
+                            footer: '<a href="/accounts/login-account/">Login</a>'
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: data.message || 'An unexpected error occurred.'
+                        });
+                    }
+                } else {
+                    $this.find("span").text(data.fav_count !== undefined ? data.fav_count : "Login Required :)");
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'An unexpected error occurred. Please try again later.'
+                });
+            });
+        });
          /* --------------------------------------------------
           after window load
           * --------------------------------------------------*/
