@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from accounts.models import Account
 from django.contrib.auth import authenticate, login
+from rest_framework.authtoken.models import Token
 
 
 def register_user(request):
@@ -58,8 +59,7 @@ def seller_registration(request):
         )
         user.set_password(password)
         user.save()
-
-        messages.success(request, "Seller registration successful!")
+        token, created = Token.objects.get_or_create(user=user)
         login(request, user)
         return redirect('homepage')
 
@@ -114,8 +114,7 @@ def buyer_registration(request):
             )
             user.set_password(password)
             user.save()
-
-            messages.success(request, "Seller registration successful!")
+            token, created = Token.objects.get_or_create(user=user)
             login(request, user)
             return redirect('homepage')
         
