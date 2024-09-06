@@ -1,0 +1,201 @@
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+        }
+
+        .chat-container {
+            width: 100%;
+            max-width: 600px;
+            height: 80vh;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background-color: #e5ddd5;
+        }
+
+        .message {
+            display: flex;
+            align-items: flex-end;
+            margin-bottom: 15px;
+        }
+
+        .message img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .message-content {
+            max-width: 60%;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            position: relative;
+            word-wrap: break-word;
+        }
+
+        .message.sender {
+            justify-content: flex-end;
+            margin-left: auto;
+        }
+
+        .message.sender .message-content {
+            background-color: #dcf8c6;
+            border-top-right-radius: 0;
+        }
+
+        .message.sender img {
+            margin-right: 0;
+            margin-left: 10px;
+        }
+
+        .message.receiver {
+            justify-content: flex-start;
+        }
+
+        .message.receiver .message-content {
+            background-color: #ffffff;
+            border-top-left-radius: 0;
+        }
+
+        .message-content:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+
+        .message.sender .message-content:before {
+            right: -10px;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent #dcf8c6;
+        }
+
+        .message.receiver .message-content:before {
+            left: -10px;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent #ffffff transparent transparent;
+        }
+
+        .input-group {
+            padding: 10px;
+            background-color: #ffffff;
+            border-top: 1px solid #ddd;
+        }
+
+        .loader {
+            display: none;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <h2>Chat with {{ other_user.username }}</h2>
+        <div class="chat-messages" id="chat-messages">
+            <!-- Messages will be dynamically loaded here -->
+        </div>
+        <div class="loader" id="loader" style="display: none;">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <div class="input-group">
+            <textarea class="form-control" id="message-input" placeholder="Type your message..."></textarea>
+            <div class="input-group-append">
+                <button class="btn btn-primary" id="send-message">Send</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const conversationId = '{{ conversation_id }}';
+        const sendMessageUrl = '{% url "send_message" %}';
+        const fetchMessagesUrl = '{% url "fetch_messages" %}';
+        const chatMessagesDiv = document.getElementById('chat-messages');
+        const loaderDiv = document.getElementById('loader');
+        const currentUserId = '{{ request.user.id }}';
+        const authToken = '{{ request.user.auth_token.key }}';
+    
+        function fetchMessages() {
+            loaderDiv.style.display = 'block';
+            fetch(`${fetchMessagesUrl}?conversation_id=${conversationId}`, {
+                headers: {
+                    'Authorization': `Token ${authToken}`
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                chatMessagesDiv.innerHTML = '';
+                data.forEach(message => {
+                    const isSender = message.sender === parseInt(currentUserId);
+                    const messageElem = document.createElement('div');
+                    messageElem.className = `message ${isSender ? 'sender' : 'receiver'}`;
+                    messageElem.innerHTML = `
+                        <img src="${message.sender_profile_picture}" alt="Profile Picture">
+                        <div class="message-content">
+                            ${message.content}
+                        </div>
+                    `;
+                    chatMessagesDiv.appendChild(messageElem);
+                });
+                loaderDiv.style.display = 'none';
+                chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
+            });
+        }
+    
+        document.getElementById('send-message').addEventListener('click', () => {
+            const messageContent = document.getElementById('message-input').value;
+            fetch(sendMessageUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Token ${authToken}`
+                },
+                body: JSON.stringify({
+                    conversation_id: conversationId,
+                    content: messageContent
+                })
+            })
+            .then(response => response.json())
+            .then(() => {
+                fetchMessages();
+                document.getElementById('message-input').value = '';
+            });
+        });
+    
+        // Fetch messages every 5 seconds
+        setInterval(fetchMessages, 5000);
+    
+        // Initial fetch
+        fetchMessages();
+    </script>
+</body>
+</html> {% endcomment %}

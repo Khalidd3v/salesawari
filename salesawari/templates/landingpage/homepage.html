@@ -252,15 +252,32 @@
                                     <i class="fa fa-heart"></i><span>{{ vehicle.fav.count }} Favorites</span>
                                 </div>                
                                 <div class="d-atr-group">
-                                    <span class="d-atr"><img src="{% static 'images/icons/1-green.svg' %}" alt="">{{ vehicle.seats }}</span>
+                                    <span class="d-atr"><img src="{% static 'images/icons/1-green.svg' %}" alt="">{{ vehicle.user.username }}</span>
                                     <span class="d-atr"><img src="{% static 'images/icons/2-green.svg' %}" alt="">{{ vehicle.model }}</span>
                                     <span class="d-atr"><img src="{% static 'images/icons/3-green.svg' %}" alt="">{{ vehicle.doors }}</span>
                                     <span class="d-atr"><img src="{% static 'images/icons/4-green.svg' %}" alt="">{{ vehicle.body }}</span>
                                 </div>
-                                <div class="d-price">
-                                    Price <span>{{ vehicle.price }}</span>
-                                    <a class="btn-main" href="02_dark-car-single.html">Buy Now</a>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        Price <span>{{ vehicle.price }}</span>
+                                    </div>
+                                    <div class="mt-2">
+                                        {% if request.user.id != vehicle.user.id %}
+                                            <a class="btn btn-sm btn-success me-2" href="#">Buy Now</a>
+                                            {% if request.user.is_buyer %}
+                                                <a class="btn btn-sm btn-success" href="{% url 'buyer_conversation' vehicle.user.id %}">Ask Price</a>
+                                            {% else %}
+                                                <a class="btn btn-sm btn-success" href="{% url 'seller_conversation' vehicle.user.id %}">Ask Price</a>
+                                            {% endif %}
+                                        {% else %}
+                                            <button class="btn btn-sm btn-success mr-2" disabled>Buy Now</button>
+                                            <button class="btn btn-sm btn-success" disabled>Ask Price</button>
+                                        {% endif %}
+                                    </div>
                                 </div>
+                                
+                                
+                                
                             </div>
                         </div>
                     </div>

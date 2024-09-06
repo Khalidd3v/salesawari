@@ -1,0 +1,101 @@
+{% extends "buyer/main.html" %}
+{% load static %}
+{% block title %} Buyer Dashboard {% endblock title %}
+{% block buyer_page_title %} Buyer Dashboard {% endblock buyer_page_title %}
+    
+{% block buyer_content %}
+        
+        <!-- content begin -->
+        <div class="col-lg-9">
+            <div class="card p-4 rounded-5 mb25">
+                <h4>Chat with {{ other_user.username }}</h4>
+                <div class="chat-container" style="height: 400px; display: flex; flex-direction: column;">
+                    <div id="chat-messages" class="flex-grow-1 overflow-auto mb-3" style="background-color: #f8f9fa; border-radius: 10px; padding: 15px;">
+                        <!-- Messages will be dynamically loaded here -->
+                    </div>
+                    <div class="input-group">
+                        <textarea class="form-control" id="message-input" placeholder="Type your message..." rows="2"></textarea>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" id="send-message">
+                                <i class="fa fa-paper-plane"></i> Send
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+                const conversationId = '{{ conversation_id }}';
+                const sendMessageUrl = '{% url "send_message" %}';
+                const fetchMessagesUrl = '{% url "fetch_messages" %}';
+                const chatMessagesDiv = document.getElementById('chat-messages');
+                const currentUserId = '{{ request.user.id }}';
+                const authToken = '{{ request.user.auth_token.key }}';
+            
+                function createMessageElement(message) {
+                    const isSender = message.sender === parseInt(currentUserId);
+                    const messageElem = document.createElement('div');
+                    messageElem.className = `d-flex ${isSender ? 'justify-content-end' : 'justify-content-start'} mb-3`;
+                    messageElem.innerHTML = `
+                        <div class="d-flex ${isSender ? 'flex-row-reverse' : 'flex-row'} align-items-end" style="max-width: 75%;">
+                            <img src="${message.sender_profile_picture}" alt="Profile Picture" class="rounded-circle mr-2" style="width: 30px; height: 30px; ${isSender ? 'margin-left: 10px;' : 'margin-right: 10px;'}">
+                            <div class="message-content p-2 rounded" style="background-color: ${isSender ? '#007bff' : '#e9ecef'}; color: ${isSender ? 'white' : 'black'};">
+                                ${message.content}
+                            </div>
+                        </div>
+                    `;
+                    return messageElem;
+                }
+            
+                function fetchMessages() {
+                    $.ajax({
+                        url: `${fetchMessagesUrl}?conversation_id=${conversationId}`,
+                        headers: {
+                            'Authorization': `Token ${authToken}`
+                        },
+                        success: function(data) {
+                            chatMessagesDiv.innerHTML = '';
+                            data.forEach(message => {
+                                chatMessagesDiv.appendChild(createMessageElement(message));
+                            });
+                            chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("Error fetching messages:", error);
+                        }
+                    });
+                }
+            
+                $('#send-message').on('click', function() {
+                    const messageContent = $('#message-input').val().trim();
+                    if (!messageContent) return;
+            
+                    $.ajax({
+                        url: sendMessageUrl,
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Token ${authToken}`
+                        },
+                        data: JSON.stringify({
+                            conversation_id: conversationId,
+                            content: messageContent
+                        }),
+                        success: function() {
+                            $('#message-input').val('');
+                            fetchMessages();
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("Error sending message:", error);
+                        }
+                    });
+                });
+            
+                // Fetch messages every 5 seconds
+                setInterval(fetchMessages, 30000);
+            
+                // Initial fetch
+                fetchMessages();
+            </script>
+            {% endblock %}
