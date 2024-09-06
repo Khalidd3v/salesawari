@@ -11,6 +11,7 @@ DEBUG = CONFIG['DEBUG']
 ALLOWED_HOSTS = CONFIG["ALLOWED_HOSTS"]
 
 AUTH_USER_MODEL = "accounts.Account"
+LOGIN_URL = '/accounts/login-account/'
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -24,6 +25,7 @@ INSTALLED_APPS = [
     "apis",
     "landingpage",
     "dashboard",
+    "chat",
     "buyer",
     "seller",
     "accounts",
