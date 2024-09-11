@@ -14,9 +14,9 @@ def login_user(request):
 def seller_registration(request):
     if request.method == 'POST':
         full_name = request.POST.get('seller-name')
-        email_address = request.POST.get('seller-email')
+        email_address = request.POST.get('seller-email').lower()
         phone_number = request.POST.get('seller-phone')
-        username = request.POST.get('seller-username')
+        username = request.POST.get('seller-username').lower()
         password = request.POST.get('seller-password')
         confirm_password = request.POST.get('seller-re-password')
 
@@ -69,9 +69,9 @@ def seller_registration(request):
 def buyer_registration(request):
     if request.method == 'POST':
             full_name = request.POST.get('buyer-name')
-            email_address = request.POST.get('buyer-email')
+            email_address = request.POST.get('buyer-email').lower()
             phone_number = request.POST.get('buyer-phone')
-            username = request.POST.get('buyer-username')
+            username = request.POST.get('buyer-username').lower()
             password = request.POST.get('buyer-password')
             confirm_password = request.POST.get('buyer-re-password')
 
@@ -123,7 +123,7 @@ def buyer_registration(request):
 
 def seller_login(request):
     if request.method == 'POST':
-        email = request.POST.get('seller-login-email')
+        email = request.POST.get('seller-login-email').lower()
         password = request.POST.get('seller-login-password')
 
         if not email and password:
@@ -142,7 +142,7 @@ def seller_login(request):
 
 def buyer_login(request):
     if request.method == 'POST':
-        email = request.POST.get('buyer-login-email')
+        email = request.POST.get('buyer-login-email').lower()
         password = request.POST.get('buyer-login-password')
 
         if not email and password:
