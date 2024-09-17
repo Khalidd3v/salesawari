@@ -1,0 +1,53 @@
+{% extends "landingpage/main.html" %}
+{% load static %}
+{% block title %}
+    Seller Login
+{% endblock title %}
+{% block content %}
+<div class="no-bottom no-top" id="content">
+    <div id="top"></div>
+    <!-- section begin -->
+    <section id="subheader" class="jarallax text-light">
+        <img src="{% static 'images/background/subheader.jpg' %}" class="jarallax-img" alt="">
+            <div class="center-y relative text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h1>Login as Seller</h1>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <!-- section close -->
+    <section aria-label="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <h3>Login with your Credentials.</h3>
+                    <p>Login to your SaleSawari account, if you are a seller lets check new messages on your listd cards or if you can order cool vehicle right after sign in into your buyer account.</p>
+                    {% if messages %} {% for m in messages %} <p class="text-success">{{m}}</p> {% endfor %} {% endif %}
+                    <div id="seller-register-container">
+                        <div class="spacer-10"></div>
+                        <form class="form-border" method="post">
+                            {% csrf_token %}
+                            <div class="field-set">
+                                <input type="text" name="seller-login-email" id="seller-login-email" class="form-control" placeholder="Your Email Address" />
+                            </div>
+                            <div class="field-set">
+                                <input type="password" name="seller-login-password" id="seller-login-password" class="form-control" placeholder="Your Password" />
+                            </div>
+                            <div id="submit">
+                                <input type="submit" id="send_message" value="Sign In" class="btn-main btn-fullwidth rounded-3" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock content %}
+    
+    

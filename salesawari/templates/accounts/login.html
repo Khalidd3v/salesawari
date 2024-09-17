@@ -1,7 +1,7 @@
 {% extends "landingpage/main.html" %}
 {% load static %}
 {% block title %}
-    Register Account
+    Login User
 {% endblock title %}
 {% block content %}
 <div class="no-bottom no-top" id="content">
@@ -13,7 +13,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 text-center">
-                            <h1>Register</h1>
+                            <h1>Login</h1>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -25,17 +25,17 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 offset-md-2">
-                    <h3>Don't have an account? Register now.</h3>
-                    <p>You can register SaleSawari Account completely free with no hidden fees. We care our user privacy and data.</p>
+                    <h3>Login with your Credentials.</h3>
+                    <p>Login to your SaleSawari account, if you are a seller lets check new messages on your listd cards or if you can order cool vehicle right after sign in into your buyer account.</p>
                     <div class="container d-flex justify-content-center align-items-center" id="ask-user-for-registration" style="background-size: 100%; background-repeat: no-repeat;">
                         <div class="row" style="background-size: 100%; background-repeat: no-repeat;">
                             <div class="col-md-6 mb-4 d-flex justify-content-center" style="background-size: 100%; background-repeat: no-repeat;">
                                 <div class="card text-center" style="background-size: 100%; background-repeat: no-repeat;">
                                     <div class="card-body d-flex flex-column align-items-center" style="background-size: 100%; background-repeat: no-repeat;">
                                         <i class="fas fa-user-plus fa-3x mb-3 text-success"></i>
-                                        <h5 class="card-title text-dark">Register as Buyer</h5>
-                                        <a href="{% url 'buyer_registration' %}">
-                                            <button class="btn btn-primary mt-auto ripple-surface">Register</button>
+                                        <h5 class="card-title text-dark">Login as Seller</h5>
+                                        <a href="{% url 'seller_login' %}">
+                                            <button class="btn btn-primary mt-auto ripple-surface">Login</button>
                                         </a>
                                     </div>
                                 </div>
@@ -44,9 +44,9 @@
                                 <div class="card text-center" style="background-size: 100%; background-repeat: no-repeat;">
                                     <div class="card-body d-flex flex-column align-items-center" style="background-size: 100%; background-repeat: no-repeat;">
                                         <i class="fas fa-car fa-3x mb-3 text-success"></i>
-                                        <h5 class="card-title text-dark">Register as Seller</h5>
-                                        <a href="{% url 'seller_registration' %}">
-                                            <button class="btn btn-primary mt-auto">Register</button>
+                                        <h5 class="card-title text-dark">Login as Buyer</h5>
+                                        <a href="{% url 'buyer_login' %}">
+                                            <button class="btn btn-primary mt-auto">Login</button>
                                         </a>
                                     </div>
                                 </div>

@@ -1,0 +1,138 @@
+{% extends "seller/main.html" %}
+{% load static %}
+{% block title %} Seller Profile {% endblock title %}
+{% block seller_page_title %} Seller Profile {% endblock seller_page_title %}
+    
+{% block seller_content %}
+        
+        <!-- content begin -->
+        <div class="col-lg-9">
+            <div class="card p-4  rounded-5">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="container mt-5">
+                            <h2 class="text-center mb-4">List New Vehicle</h2>
+                            {% if messages %}
+                                <div>
+                                    {% for message in messages %}
+                                        <div class="alert {% if message.tags == 'error' %}alert-danger{% elif message.tags == 'success' %}alert-success{% else %}alert-info{% endif %} alert-dismissible fade show" role="alert">
+                                            {{ message }}
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+
+                            <form method="post" enctype="multipart/form-data">
+                                <!-- Vehicle Details -->
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    <label for="uploadcarname" class="form-label">Car Name</label>
+                                    <input type="text" class="form-control" id="uploadcarname" name="uploadcarname" placeholder="e.g. Toyota Corolla" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="uploadshortinfo" class="form-label">Short Info</label>
+                                    <textarea class="form-control" id="uploadshortinfo" name="uploadshortinfo" rows="3" placeholder="Brief overview of the car"></textarea>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="uploadcarprice" class="form-label">Price ($)</label>
+                                        <input type="number" class="form-control" id="uploadcarprice" name="uploadcarprice" placeholder="e.g. 15000" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="uploadcarbody" class="form-label">Body Type</label>
+                                        <input type="text" class="form-control" id="uploadcarbody" name="uploadcarbody" placeholder="e.g. Sedan">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="uploadcarseats" class="form-label">Seats</label>
+                                        <input type="number" class="form-control" id="uploadcarseats" name="uploadcarseats" placeholder="e.g. 2 seats">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="uploadcardoors" class="form-label">Doors</label>
+                                        <input type="number" class="form-control" id="uploadcardoors" name="uploadcardoors" placeholder="e.g. 2 doors">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="uploadfueltype" class="form-label">Fuel Type</label>
+                                        <input type="text" class="form-control" id="uploadfueltype" name="uploadfueltype" placeholder="e.g. Petrol, Hybird">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="uploadcarengine" class="form-label">Engine</label>
+                                        <input type="text" class="form-control" id="uploadcarengine" name="uploadcarengine" placeholder="e.g. 3000">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="uploadcarmodel" class="form-label">Model</label>
+                                        <input type="text" class="form-control" id="uploadcarmodel" name="uploadcarmodel" placeholder="e.g.  2020">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="uploadcarmode" class="form-label">Mode</label>
+                                        <input type="text" class="form-control" id="uploadcarmode" name="uploadcarmode" placeholder="e.g. Automatic">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="uploadcarcolor" class="form-label">Color</label>
+                                    <input type="text" class="form-control" id="uploadcarcolor" name="uploadcarcolor" placeholder="e.g. Black or White">
+                                </div>
+                    
+                                <!-- Image Upload Section -->
+                                <div class="mb-3">
+                                    <label for="uploadcarmages" class="form-label">Upload Car Images (Multiple)</label>
+                                    <input type="file" class="form-control" id="uploadcarmages" name="uploadcarmages" accept="image/*" multiple onchange="uploadCarPreviewImages(event)">
+                                </div>
+                    
+                                <!-- Image Preview Carousel -->
+                                <div id="imageCarousel" class="carousel slide mb-3" data-bs-ride="carousel" style="display: none;">
+                                    <div class="carousel-inner" id="carouselImages"></div>
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Submit Listing</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      <!-- content close -->
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function uploadCarPreviewImages(event) {
+        const files = event.target.files;
+        const carouselImages = document.getElementById('carouselImages');
+        carouselImages.innerHTML = '';
+
+        if (files.length > 0) {
+            document.getElementById('imageCarousel').style.display = 'block';
+
+            for (let i = 0; i < files.length; i++) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const isActive = i === 0 ? 'active' : '';
+                    const carouselItem = `
+                        <div class="carousel-item ${isActive}">
+                            <img src="${e.target.result}" class="d-block w-100" alt="Car Image">
+                        </div>`;
+                    carouselImages.insertAdjacentHTML('beforeend', carouselItem);
+                };
+                reader.readAsDataURL(files[i]);
+            }
+        } else {
+            document.getElementById('imageCarousel').style.display = 'none';
+        }
+    }
+</script>
+{% endblock extra_js %}
+    

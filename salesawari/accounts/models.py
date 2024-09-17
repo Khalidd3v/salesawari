@@ -45,7 +45,7 @@ class Account(AbstractBaseUser):
     last_login = models.DateTimeField(verbose_name="last login", auto_now=True)
     is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
-    is_buyer = models.BooleanField(default=True)
+    is_buyer = models.BooleanField(default=False)
     is_seller = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
@@ -65,3 +65,7 @@ class Account(AbstractBaseUser):
 
     def has_module_perms(self, app_label):
         return True
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(Account, on_delete=models.CASCADE, related_name='userprofile')
+    profile_picture = models.ImageField(upload_to='profile_images/', null=True, blank=True)

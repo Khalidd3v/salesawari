@@ -1,0 +1,123 @@
+{% extends "seller/main.html" %}
+{% load static %}
+{% block title %} Seller Profile {% endblock title %}
+{% block seller_page_title %} Seller Profile {% endblock seller_page_title %}
+{% block seller_content %}
+        <!-- content begin -->
+        <div class="col-lg-9">
+            <div class="card p-4  rounded-5">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="de_tab tab_simple">
+                            <ul class="de_nav">
+                                <li class="active"><span>Update Profile Image</span></li>
+                                <li><span>Profile Setting</span></li>
+                                <li><span>Account Security</span></li>
+                            </ul>
+                               <!-- Displaying Bootstrap Alerts -->
+                               {% if messages %}
+                               <div class="container mt-3">
+                                   {% for message in messages %}
+                                   <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %} alert-dismissible fade show" role="alert">
+                                       {{ message }}
+                                       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                   </div>
+                                   {% endfor %}
+                               </div>
+                               {% endif %}
+                            <div class="de_tab_content">                            
+                                <div class="tab-1">
+                                    <div class="container d-flex justify-content-center align-items-center">
+                                        <div class="text-center">
+                                            <form id="imageForm" enctype="multipart/form-data" method="post">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="profile_image_form">
+                                                
+                                                <!-- Display current profile image if available -->
+                                                <div id="imagePreview" class="mx-auto mb-3" style="width: 200px; height: 200px; border-radius: 50%; overflow: hidden; background-color: #f8f9fa; display: flex; justify-content: center; align-items: center;">
+                                                    {% if request.user.userprofile.profile_picture %}
+                                                    <img id="currentImage" src="{{request.user.userprofile.profile_picture.url}}" alt="Profile Image" style="width: 100%; height: 100%; object-fit: cover;">
+                                                    {% else %}
+                                                    <span class="text-muted">No image selected</span>
+                                                    {% endif %}
+                                                </div>
+                                                
+                                                <input type="file" id="imageUpload" name="image" accept="image/*" class="d-none">
+                                                <label for="imageUpload" class="btn btn-primary me-2">Choose Image</label>
+                                                <button type="submit" class="btn btn-success">Change profile</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="tab-2">
+                                    <div class="row">
+                                        <form id="form-create-item" class="form-border" method="post">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="account_details_form">
+                                            <div class="col-lg-12 mb20">
+                                                <h5>Full Name</h5>
+                                                <input type="text" name="full_name" id="full_name" class="form-control" value="{{request.user.full_name}}" placeholder="Enter Full Name" />
+                                            </div>
+                                            <div class="col-lg-12 mb20">
+                                                <h5>Username</h5>
+                                                <input type="text" name="username" id="username" class="form-control" value="{{request.user.username}}" placeholder="Enter username" />
+                                            </div>
+                                            <div class="col-lg-12 mb20">
+                                                <h5>Email Address</h5>
+                                                <input type="text" name="email_address" id="email" class="form-control" value="{{request.user.email}}" placeholder="Email Address" />
+                                            </div>
+                                            <div class="col-lg-12 mb20">
+                                                <h5>Phone number</h5>
+                                                <input type="text" name="phone_number" id="phone" class="form-control" value="{{request.user.phone}}" placeholder="03xxxxxx" />
+                                            </div>
+                                            <input type="submit" class="btn-main" value="Update Account Details">
+                                        </form>
+                                    </div>
+                                </div>
+                                
+                                <div class="tab-3">
+                                    <div class="row">
+                                        <form method="post" class="form-border">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="account_security_form">
+                                            <div class="col-lg-12 mb20">
+                                                <h5>Current Password*</h5>
+                                                <input type="password" name="current_password" id="current_password" class="form-control" placeholder="Enter current password" />
+                                            </div>
+                                            <div class="col-lg-12 mb20">
+                                                <h5>New Password*</h5>
+                                                <input type="password" name="new_password" id="new_password" class="form-control" placeholder="Enter new password" />
+                                            </div>
+                                            <div class="col-lg-12 mb20">
+                                                <h5>Confirm Password*</h5>
+                                                <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Enter confirm password" />
+                                            </div>
+                                            <input type="submit" class="btn-main" value="Update Password">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      <!-- content close -->
+      <script>
+        const imageUpload = document.getElementById('imageUpload');
+        const imagePreview = document.getElementById('imagePreview');
+        const currentImage = document.getElementById('currentImage');
+    
+        imageUpload.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreview.innerHTML = `<img src="${e.target.result}" alt="Preview" style="width: 100%; height: 100%; object-fit: cover;">`;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+{% endblock %}

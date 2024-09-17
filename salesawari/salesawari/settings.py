@@ -1,5 +1,7 @@
 from pathlib import Path
 import json
+import os
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -9,6 +11,7 @@ DEBUG = CONFIG['DEBUG']
 ALLOWED_HOSTS = CONFIG["ALLOWED_HOSTS"]
 
 AUTH_USER_MODEL = "accounts.Account"
+LOGIN_URL = '/accounts/login-account/'
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -17,8 +20,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rest_framework",
+    "rest_framework.authtoken",
+    "apis",
     "landingpage",
     "dashboard",
+    "chat",
     "buyer",
     "seller",
     "accounts",
@@ -33,6 +40,23 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle',
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '10/minute',
+        'user': '100/minute',
+    }
+}
 
 ROOT_URLCONF = "salesawari.urls"
 
@@ -81,6 +105,9 @@ LANGUAGE_CODE = "en-us"
 TIME_ZONE = "Asia/Karachi"
 USE_I18N = True
 USE_TZ = True
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
 
 STATIC_URL = "static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]

@@ -54,3 +54,5 @@ salesawari/templates/raw HTML/
 # Ignore specific folders in the project
 salesawari/landingpage/
 salesawari/seller/
+salesawari/buyer/migrations/
+salesawari/chat/migrations/
