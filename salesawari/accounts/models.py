@@ -65,3 +65,7 @@ class Account(AbstractBaseUser):
 
     def has_module_perms(self, app_label):
         return True
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(Account, on_delete=models.CASCADE, related_name='userprofile')
+    profile_picture = models.ImageField(upload_to='profile_images/', null=True, blank=True)

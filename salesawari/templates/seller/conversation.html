@@ -1,0 +1,155 @@
+{% extends "seller/main.html" %}
+{% load static %}
+{% block title %} Chat {% endblock title %}
+{% block seller_page_title %} Chat {% endblock seller_page_title %}
+
+{% block seller_content %}
+    <!-- Audio files for sounds -->
+    <audio id="new-message-sound" src="{% static 'mp3/receive_message.mp3' %}"></audio>
+    <audio id="send-message-sound" src="{% static 'mp3/send_message.mp3' %}"></audio>
+
+    <!-- content begin -->
+    <div class="col-lg-9">
+        <div class="card p-4 rounded-5 mb25">
+            <h4>Chat with {{ other_user.username }}</h4>
+            <div class="chat-container" style="height: 400px; display: flex; flex-direction: column;">
+                <div id="chat-messages" class="flex-grow-1 overflow-auto mb-3" 
+                     style="background-color: #f8f9fa; border-radius: 10px; padding: 15px; word-wrap: break-word; overflow-y: auto; overflow-x: hidden;">
+                    <!-- Messages will be dynamically loaded here -->
+                </div>
+                <div class="input-group">
+                    <textarea class="form-control" id="message-input" placeholder="Type your message..." rows="2"></textarea>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" id="send-message">
+                            <i class="fa fa-paper-plane"></i> Send
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            const conversationId = '{{ conversation_id }}';
+            const conversationId = '{{ conversation_id }}';
+            const sendMessageUrl = '{% url "send_message" %}';
+            const fetchMessagesUrl = '{% url "fetch_messages" %}';
+            const chatMessagesDiv = document.getElementById('chat-messages');
+            const currentUserId = parseInt('{{ request.user.id }}');
+            const authToken = '{{ request.user.auth_token.key }}';
+            const newMessageSound = document.getElementById('new-message-sound');
+            const sendMessageSound = document.getElementById('send-message-sound');
+            let lastMessageId = null;
+            let lastSoundPlayedTime = 0;
+            const soundCooldown = 1000; // 1 second cooldown between sounds
+            
+            function playSound(audioElement) {
+                const currentTime = Date.now();
+                if (currentTime - lastSoundPlayedTime > soundCooldown) {
+                    audioElement.play().catch(function(error) {
+                        console.error('Audio playback failed:', error);
+                    });
+                    lastSoundPlayedTime = currentTime;
+                }
+            }
+        
+            // Function to create message elements in chat
+            function createMessageElement(message) {
+                const isSender = message.sender === currentUserId;
+                const messageElem = document.createElement('div');
+                messageElem.className = `d-flex ${isSender ? 'justify-content-end' : 'justify-content-start'} mb-3`;
+                messageElem.innerHTML = `
+                    <div class="d-flex ${isSender ? 'flex-row-reverse' : 'flex-row'} align-items-end" style="max-width: 75%;">
+                        <img src="${message.sender_profile_picture}" alt="Profile Picture" class="rounded-circle mr-2" 
+                             style="width: 30px; height: 30px; ${isSender ? 'margin-left: 10px;' : 'margin-right: 10px;'}">
+                        <div class="message-content p-2 rounded" style="background-color: ${isSender ? '#007bff' : '#e9ecef'}; color: ${isSender ? 'white' : 'black'};">
+                            ${message.content}
+                        </div>
+                    </div>
+                `;
+                return messageElem;
+            }
+        
+            // Function to fetch messages from the server
+            function fetchMessages() {
+                $.ajax({
+                    url: `${fetchMessagesUrl}?conversation_id=${conversationId}`,
+                    headers: {
+                        'Authorization': `Token ${authToken}`
+                    },
+                    success: function(data) {
+                        let hasNewMessages = false;
+                        const currentTime = Date.now();
+            
+                        chatMessagesDiv.innerHTML = '';
+                        data.forEach(message => {
+                            chatMessagesDiv.appendChild(createMessageElement(message));
+                            
+                            if (message.id > lastMessageId && message.sender !== currentUserId) {
+                                hasNewMessages = true;
+                            }
+                        });
+                        
+                        chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
+            
+                        if (hasNewMessages && currentTime - lastSoundPlayedTime > soundCooldown) {
+                            console.log("New message received from another user, playing sound...");
+                            playSound(newMessageSound);
+                        }
+            
+                        lastMessageId = data.length > 0 ? data[data.length - 1].id : null;
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error fetching messages:", error);
+                    }
+                });
+            }
+            
+            $('#send-message').on('click', function() {
+                const messageContent = $('#message-input').val().trim();
+                if (!messageContent) return;
+            
+                $.ajax({
+                    url: sendMessageUrl,
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Token ${authToken}`
+                    },
+                    data: JSON.stringify({
+                        conversation_id: conversationId,
+                        content: messageContent
+                    }),
+                    success: function(response) {
+                        $('#message-input').val('');
+                        console.log("Message sent, playing sound...");
+                        playSound(sendMessageSound);
+                        
+                        // Update lastMessageId with the newly sent message ID
+                        if (response && response.id) {
+                            lastMessageId = response.id;
+                        }
+                        
+                        // Use setTimeout to delay the fetchMessages call
+                        setTimeout(fetchMessages, 500);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error sending message:", error);
+                    }
+                });
+            });
+            
+            $('#message-input').on('keypress', function(e) {
+                if (e.which === 13 && !e.shiftKey) {
+                    e.preventDefault();
+                    $('#send-message').click();
+                }
+            });
+            
+            // Initial fetch
+            fetchMessages();
+            
+            // Set up periodic fetching
+            setInterval(fetchMessages, 3000);
+        </script>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "buyer/main.html" %}
+{% load static %}
+{% block title %} Recent Chat History {% endblock title %}
+{% block buyer_page_title %} Recent Chat History {% endblock buyer_page_title %}
+    
+{% block buyer_content %}
+        
+        <!-- content begin -->
+        <div class="col-lg-9">
+            <div class="card p-4 rounded-5 mb25">
+                <h4>Resent Chat History</h4>
+            </div>
+            <div class="list-group">
+                {% for data in conversation_data %}
+                    <div class="list-group-item">
+                        <p>Conversation with {{ data.other_user.username }}</p>
+                        <a href="{% url 'buyer_conversation' data.other_user.id %}" class="btn btn-primary">Reply</a>
+                    </div>
+                {% empty %}
+                    <p>No conversations found.</p>
+                {% endfor %}
+            </div>
+        </div>
+      <!-- content close -->
+{% endblock %}

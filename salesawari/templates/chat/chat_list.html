@@ -1,0 +1,27 @@
+{% comment %} {% extends "landingpage/main.html" %}
+{% load static %}
+{% block title %}
+    messages
+{% endblock title %}
+{% block content %}
+
+<div class="container mt-4">
+    <h2>Your Conversations</h2>
+    <div class="list-group">
+        {% for conversation in conversations %}
+            <a href="{% url 'start_conversation' conversation.other_participant.id %}" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{ conversation.other_participant.username }}</h5>
+                    <small>{{ conversation.updated_at|timesince }} ago</small>
+                </div>
+                <p class="mb-1">{{ conversation.messages.last.content|truncatechars:50 }}</p>
+            </a>
+        {% empty %}
+            <p>You have no conversations yet.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<a href="#" id="back-to-top"></a>
+{% endblock content %}
+     {% endcomment %}

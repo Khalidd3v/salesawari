@@ -164,15 +164,15 @@
                                     <div class="de-login-menu">
 
                                         <span id="de-click-menu-profile" class="de-menu-profile">                           
-                                            <img src="{% static 'images/profile/1.jpg' %}" class="img-fluid" alt="">
+                                            <img src="{{ request.user.userprofile.profile_picture.url }}" class="img-fluid" alt="Profile: {{ request.user.username }}">
                                         </span>
 
                                         
 
                                         <div id="de-submenu-profile" class="de-submenu">
                                             <div class="d-name">
-                                                <h4>Monica Lucas</h4>
-                                                <span class="text-gray">monica@rentaly.com</span>
+                                                <h4>{{request.user.username}}</h4>
+                                                <span class="text-gray">{{request.user.email}}</span>
                                             </div>
 
                                             <div class="d-line"></div>
@@ -227,12 +227,12 @@
                             <div class="card p-4 rounded-5">
                                 <div class="profile_avatar">
                                     <div class="profile_img">
-                                        <img src="{% static 'images/profile/1.jpg' %}" alt="">
+                                        <img src="{{request.user.userprofile.profile_picture.url}}" alt="">
                                     </div>
                                     <div class="profile_name">
                                         <h4>
-                                            Monica Lucas                                                
-                                            <span class="profile_username text-gray">monica@rentaly.com</span>
+                                           {{request.user.full_name}}                                               
+                                            <span class="profile_username text-gray">{{request.user.email}}</span>
                                         </h4>
                                     </div>
                                 </div>
@@ -242,6 +242,7 @@
                                     <li><a href="{% url 'list_new_vehicle' %}" class=""><i class="fa fa-car"></i>List New Vehicle</a></li>
                                     <li><a href="{% url 'seller_profile' %}"><i class="fa fa-user"></i>My Profile</a></li>
                                     <li><a href="account-booking.html"><i class="fa fa-calendar"></i>My Orders</a></li>
+                                    <li><a href="{% url 'seller_chat_list' %}"><i class="fa fa-user"></i>Messages</a></li>
                                     <li><a href="account-favorite.html"><i class="fa fa-car"></i>My Favorite Cars</a></li>
                                     <li><a href="login.html"><i class="fa fa-sign-out"></i>Sign Out</a></li>
                                 </ul>
