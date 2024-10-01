@@ -7,47 +7,51 @@
         
         <!-- content begin -->
         <div class="col-lg-9">
-            <div class="row">
-                <div class="col-lg-3 col-6 mb25 order-sm-1">
-                    <div class="card p-4 rounded-5">
-                        <div class="symbol mb40">
-                            <i class="fa id-color fa-2x fa-calendar-check-o"></i>
-                        </div>
-                        <span class="h1 mb0">03</span>
-                        <span class="text-gray">Upcoming Orders</span>
+          <div class="row">
+            <!-- Total Vehicles Listed -->
+            <div class="col-lg-3 col-6 mb25 order-sm-1">
+                <div class="card p-4 rounded-5">
+                    <div class="symbol mb40">
+                        <i class="fa id-color fa-2x fa-car"></i>  <!-- Car icon -->
                     </div>
-                </div>
-
-                <div class="col-lg-3 col-6 mb25 order-sm-1">
-                    <div class="card p-4 rounded-5">
-                        <div class="symbol mb40">
-                            <i class="fa id-color fa-2x fa-tags"></i>
-                        </div>
-                        <span class="h1 mb0">12</span>
-                        <span class="text-gray">Coupons</span>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-6 mb25 order-sm-1">
-                    <div class="card p-4 rounded-5">
-                        <div class="symbol mb40">
-                            <i class="fa id-color fa-2x fa-calendar"></i>
-                        </div>
-                        <span class="h1 mb0">58</span>
-                        <span class="text-gray">Total Orders</span>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-6 mb25 order-sm-1">
-                    <div class="card p-4 rounded-5">
-                        <div class="symbol mb40">
-                            <i class="fa id-color fa-2x fa-calendar-times-o"></i>
-                        </div>
-                        <span class="h1 mb0">24</span>
-                        <span class="text-gray">Cancel Orders</span>
-                    </div>
+                    <span class="h1 mb0">{{total_vehicles_listed}}</span>
+                    <span class="text-gray">Total Vehicles Listed</span>
                 </div>
             </div>
+        
+            <!-- Total Vehicles Sold -->
+            <div class="col-lg-3 col-6 mb25 order-sm-1">
+                <div class="card p-4 rounded-5">
+                    <div class="symbol mb40">
+                        <i class="fa id-color fa-2x fa-truck-moving"></i>  <!-- Truck Moving icon -->
+                    </div>
+                    <span class="h1 mb0">**</span>
+                    <span class="text-gray">Total Vehicle Sold in last 30 days</span>
+                </div>
+            </div>
+        
+            <!-- Buyers Made Favorite -->
+            <div class="col-lg-3 col-6 mb25 order-sm-1">
+                <div class="card p-4 rounded-5">
+                    <div class="symbol mb40">
+                        <i class="fa id-color fa-2x fa-heart"></i>  <!-- Heart icon -->
+                    </div>
+                    <span class="h1 mb0">{{buyer_made_favorites}}</span>
+                    <span class="text-gray">Buyers Made Favorite</span>
+                </div>
+            </div>
+        
+            <!-- Messages Received -->
+            <div class="col-lg-3 col-6 mb25 order-sm-1">
+                <div class="card p-4 rounded-5">
+                    <div class="symbol mb40">
+                        <i class="fa id-color fa-2x fa-envelope"></i>  <!-- Envelope icon -->
+                    </div>
+                    <span class="h1 mb0">{{conversations}}</span>
+                    <span class="text-gray">Messages Recieved</span>
+                </div>
+            </div>
+        </div>
 
             <div class="card p-4 rounded-5 mb25">
                 <h4>My Recent Orders</h4>
