@@ -1,0 +1,51 @@
+{% extends "seller/main.html" %}
+{% load static %}
+{% block title %} Listed Vehicles {% endblock title %}
+{% block seller_page_title %} My Listed Vehicles {% endblock seller_page_title %}
+
+{% block seller_content %}
+    <!-- content begin -->
+    <div class="col-lg-9">
+        <div class="overflow-auto" style="max-height: 500px;"> 
+            {% if vehicles %}
+                {% for v in vehicles %}
+                    <div class="de-item-list no-border mb30">
+                        <div class="d-img">
+                            {% if v.images.all|length > 0 %}
+                                <img src="/media/{{ v.images.first.image }}" class="img-fluid" alt="">
+                            {% else %}
+                                <img src="{% static 'images/cars/jeep-renegade.jpg' %}" class="img-fluid" alt=""> 
+                                <!-- Display a default image if no images are available -->
+                            {% endif %}
+                        </div>
+                        <div class="d-info">
+                            <div class="d-text">
+                                <h4>{{ v.name }}</h4>
+                                <div class="d-atr-group">
+                                    <ul class="d-atr">
+                                        <li><span>Seats:</span>{{ v.seats }}</li>
+                                        <li><span>Luggage:</span>{{ v.luggage }}</li>
+                                        <li><span>Doors:</span>{{ v.doors }}</li>
+                                        <li><span>Fuel:</span>{{ v.fuel_type }}</li>
+                                        <li><span>Horsepower:</span>{{ v.horsepower }}</li>
+                                        <li><span>Engine:</span>{{ v.engine }}</li>
+                                        <li><span>Drive:</span>{{ v.drive }}</li>
+                                        <li><span>Type:</span>{{ v.body }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-price">
+                            Daily rate from <span>$ {{ v.price }}</span>
+                            <a class="btn-main" href="#">View Details</a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No vehicles listed.</p>
+            {% endif %}
+        </div>
+    </div>
+    <!-- content close -->
+{% endblock %}

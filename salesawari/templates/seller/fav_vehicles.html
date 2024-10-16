@@ -1,0 +1,51 @@
+{% extends "seller/main.html" %}
+{% load static %}
+{% block title %} My Favorite Vehicles {% endblock title %}
+{% block seller_page_title %} My Favorite Vehicles {% endblock seller_page_title %}
+
+{% block seller_content %}
+    <!-- content begin -->
+    <div class="col-lg-9">
+        <div class="overflow-auto" style="max-height: 500px;"> 
+            {% if fav %}
+                {% for v in fav %}
+                    <div class="de-item-list no-border mb30">
+                        <div class="d-img">
+                            {% if v.vehicle.images.all|length > 0 %}
+                                <img src="/media/{{ v.vehicle.images.first.image }}" class="img-fluid" alt="">
+                            {% else %}
+                                <img src="{% static 'images/cars/jeep-renegade.jpg' %}" class="img-fluid" alt=""> 
+                                <!-- Display a default image if no images are available -->
+                            {% endif %}
+                        </div>
+                        <div class="d-info">
+                            <div class="d-text">
+                                <h4>{{ v.vehicle.name }}</h4>
+                                <div class="d-atr-group">
+                                    <ul class="d-atr">
+                                        <li><span>Seats:</span>{{ v.vehicle.seats }}</li>
+                                        <li><span>Luggage:</span>{{ v.vehicle.luggage }}</li>
+                                        <li><span>Doors:</span>{{ v.vehicle.doors }}</li>
+                                        <li><span>Fuel:</span>{{ v.vehicle.fuel_type }}</li>
+                                        <li><span>Horsepower:</span>{{ v.vehicle.horsepower }}</li>
+                                        <li><span>Engine:</span>{{ v.vehicle.engine }}</li>
+                                        <li><span>Drive:</span>{{ v.vehicle.drive }}</li>
+                                        <li><span>Type:</span>{{ v.vehicle.body }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-price">
+                            Daily rate from <span>$ {{ v.vehicle.price }}</span>
+                            <a class="btn-main" href="#">View Vehicle</a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No Favorite vehicles Found :)</p>
+            {% endif %}
+        </div>
+    </div>
+    <!-- content close -->
+{% endblock %}

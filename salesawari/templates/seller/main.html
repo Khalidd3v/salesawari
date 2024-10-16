@@ -82,89 +82,23 @@
                             </div>
                             <div class="de-flex-col header-col-mid">
                                 <ul id="mainmenu">
-                                    <li><a class="menu-item" href="index.html">Home</a>
-                                        <ul>
-                                            <li><a class="menu-item" href="02_dark-index-1.html">New: Homepage 1 Dark</a></li>
-                                            <li><a class="menu-item" href="02_dark-index-2.html">New: Homepage 2 Dark</a></li>
-                                            <li><a class="menu-item" href="index.html">Homepage Main</a></li>
-                                            <li><a class="menu-item" href="index-2.html">Homepage 2</a></li>
-                                            <li><a class="menu-item" href="index-3.html">Homepage 3</a></li>
-                                            <li><a class="menu-item" href="index-4.html">Homepage 4</a></li>
-                                            <li><a class="menu-item" href="index-5.html">Homepage 5</a></li>
-                                            <li><a class="menu-item" href="index-6.html">Homepage 6</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a class="menu-item" href="cars.html">Cars</a>
-                                        <ul>
-                                            <li><a class="menu-item" href="cars.html">Cars List 1</a></li>
-                                            <li><a class="menu-item" href="02_dark-cars.html">Cars List 1 Dark</a></li>
-                                            <li><a class="menu-item" href="cars-list.html">Cars List 2</a></li>
-                                            <li><a class="menu-item" href="02_dark-cars-list.html">Cars List 2 Dark</a></li>
-                                            <li><a class="menu-item" href="car-single.html">Cars Single</a></li>
-                                            <li><a class="menu-item" href="02_dark-car-single.html">Cars Single Dark</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a class="menu-item" href="booking.html">Booking</a></li>
-                                    <li><a class="menu-item" href="account-dashboard.html">My Account</a>
-                                        <ul>
-                                            <li><a class="menu-item" href="account-dashboard.html">Dashboard</a></li>
-                                            <li><a class="menu-item" href="account-profile.html">My Profile</a></li>
-                                            <li><a class="menu-item" href="account-booking.html">My Orders</a></li>
-                                            <li><a class="menu-item" href="account-favorite.html">My Favorite Cars</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a class="menu-item" href="#">Pages</a>
-                                        <ul>
-                                            <li><a class="menu-item" href="about.html">About Us</a></li>
-                                            <li><a class="menu-item" href="contact.html">Contact</a></li>
-                                            <li><a class="menu-item" href="login.html">Login</a></li>
-                                            <li><a class="menu-item" href="register.html">Register</a></li>
-                                            <li><a class="menu-item" href="404.html">Page 404</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a class="menu-item" href="#">News</a>
-                                        <ul>
-                                            <li><a class="menu-item" href="news-standart-right-sidebar.html">News Standard</a>
-                                                <ul>
-                                                    <li><a class="menu-item" href="news-standart-right-sidebar.html">Right Sidebar</a></li>
-                                                    <li><a class="menu-item" href="news-standart-left-sidebar.html">Left Sidebar</a></li>
-                                                    <li><a class="menu-item" href="news-standart-no-sidebar.html">No Sidebar</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a class="menu-item" href="news-grid-right-sidebar.html">News Grid</a>
-                                                <ul>
-                                                    <li><a class="menu-item" href="news-grid-right-sidebar.html">Right Sidebar</a></li>
-                                                    <li><a class="menu-item" href="news-grid-left-sidebar.html">Left Sidebar</a></li>
-                                                    <li><a class="menu-item" href="news-grid-no-sidebar.html">No Sidebar</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a class="menu-item" href="#">Elements</a>
-                                        <ul>
-                                            <li><a class="menu-item" href="preloader.html">Preloader</a></li>
-                                            <li><a class="menu-item" href="icon-boxes.html">Icon Boxes</a></li>
-                                            <li><a class="menu-item" href="badge.html">Badge</a></li>
-                                            <li><a class="menu-item" href="counters.html">Counters</a></li>
-                                            <li><a class="menu-item" href="gallery-popup.html">Gallery Popup</a></li>
-                                            <li><a class="menu-item" href="icons-elegant.html">Icons Elegant</a></li>
-                                            <li><a class="menu-item" href="icons-etline.html">Icons Etline</a></li>
-                                            <li><a class="menu-item" href="icons-font-awesome.html">Icons Font Awesome</a></li>
-                                            <li><a class="menu-item" href="map.html">Map</a></li>
-                                            <li><a class="menu-item" href="modal.html">Modal</a></li>
-                                            <li><a class="menu-item" href="popover.html">Popover</a></li>
-                                            <li><a class="menu-item" href="tabs.html">Tabs</a></li>
-                                            <li><a class="menu-item" href="tooltips.html">Tooltips</a></li>
-                                        </ul>
-                                    </li>
+                                    <li><a class="menu-item" href="{% url 'homepage' %}">Home</a></li>
+                                    <li><a class="menu-item" href="{% url 'homepage' %}">Trending Vehicles</a></li>                                    
+                                    <li><a class="menu-item" href="{% url 'homepage' %}">Most in Demands</a></li>                                    
+                                    <li><a class="menu-item" href="{% url 'homepage' %}">Vehicles by Filter</a></li>                                    
+                                    <li><a class="menu-item" href="{% url 'homepage' %}">Contact Support</a></li>                                    
                                 </ul>
                             </div>
                             <div class="de-flex-col">
                                 <div class="menu_side_area">
                                     <div class="de-login-menu">
 
-                                        <span id="de-click-menu-profile" class="de-menu-profile">                           
+                                        <span id="de-click-menu-profile" class="de-menu-profile">
+                                            {% if request.user.userprofile.profile_picture %}                     
                                             <img src="{{ request.user.userprofile.profile_picture.url }}" class="img-fluid" alt="Profile: {{ request.user.username }}">
+                                            {% else %}
+                                            <img src="{% static 'images/default_images/default_profile_image.webp' %}" alt="Profile: {{ request.user.username }}" class="img-fluid">
+                                            {% endif %} 
                                         </span>
 
                                         
@@ -179,11 +113,13 @@
 
                                             <ul class="menu-col">
                                                 <li><a href="{% url 'homepage' %}"><i class="fa fa-home"></i>View Home</a></li>
-                                                <li><a href="#"><i class="fa fa-user"></i>Change Password</a></li>
-                                                <form method="post" action="{% url 'logout' %}" style="display: inline;">
-                                                    {% csrf_token %}
-                                                    <button type="submit" class="btn btn-danger">Logout</button>
-                                                </form>
+                                                <li><a href="{% url 'change_password' %}"><i class="fa fa-user mb-4"></i>Change Password</a></li>
+                                                <li>
+                                                    <form method="post" action="{% url 'logout' %}" style="display: inline; text-align: center;">
+                                                        {% csrf_token %}
+                                                        <button type="submit" class="btn btn-sm btn-danger">Logout</button>
+                                                    </form>
+                                                </li>
                                             </ul>
                                         </div>
                                         <span id="menu-btn"></span>
@@ -227,7 +163,11 @@
                             <div class="card p-4 rounded-5">
                                 <div class="profile_avatar">
                                     <div class="profile_img">
-                                        <img src="{{request.user.userprofile.profile_picture.url}}" alt="">
+                                        {% if request.user.userprofile.profile_picture %}
+                                        <img src="{{request.user.userprofile.profile_picture.url}}" alt="Seller : request.user.username">
+                                        {% else %}
+                                        <img src="{% static 'images/default_images/default_profile_image.webp' %}" alt="Profile: {{ request.user.username }}">
+                                        {% endif %} 
                                     </div>
                                     <div class="profile_name">
                                         <h4>
@@ -241,11 +181,10 @@
                                     <li><a href="{% url 'seller_dashboard' %}" class=""><i class="fa fa-home"></i>Dashboard</a></li>
                                     <li><a href="{% url 'list_new_vehicle' %}" class=""><i class="fa fa-car"></i>List New Vehicle</a></li>
                                     <li><a href="{% url 'seller_profile' %}"><i class="fa fa-user"></i>My Profile</a></li>
-                                    <li><a href="account-booking.html"><i class="fa fa-calendar"></i>My Orders</a></li>
+                                    <li><a href="{% url 'listed_vehicles' %}"><i class="fa fa-user"></i>Listed Vehicles</a></li>
+                                    <li><a href="#"><i class="fa fa-calendar"></i>My Orders</a></li>
                                     <li><a href="{% url 'seller_chat_list' %}"><i class="fa fa-user"></i>Messages</a></li>
-                                    <li><a href="account-favorite.html"><i class="fa fa-car"></i>My Favorite Cars</a></li>
-                                    <li><a href="login.html"><i class="fa fa-sign-out"></i>Sign Out</a></li>
-                                </ul>
+                                    <li><a href="{% url 'favorite_vehicles' %}"><i class="fa fa-car"></i>My Favorite Cars</a></li>
                             </div>
                         </div>
 
