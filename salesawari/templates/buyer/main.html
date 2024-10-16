@@ -39,9 +39,9 @@
                 <div class="container">
                     <div class="topbar-left xs-hide">
                         <div class="topbar-widget">
-                            <div class="topbar-widget"><a href="#"><i class="fa fa-phone"></i>+208 333 9296</a></div>
-                            <div class="topbar-widget"><a href="#"><i class="fa fa-envelope"></i>contact@rentaly.com</a></div>
-                            <div class="topbar-widget"><a href="#"><i class="fa fa-clock-o"></i>Mon - Fri 08.00 - 18.00</a></div>
+                            <div class="topbar-widget"><a href="#"><i class="fa fa-phone"></i>+92 34747 91942</a></div>
+                            <div class="topbar-widget"><a href="#"><i class="fa fa-envelope"></i>contact@salesawari.com</a></div>
+                            <div class="topbar-widget"><a href="#"><i class="fa fa-clock-o"></i>Mon - Fri 08.00 AM - 7.00 PM</a></div>
                         </div>
                     </div>
                 
@@ -76,77 +76,21 @@
                             <div class="de-flex-col header-col-mid">
                                 <ul id="mainmenu">
                                     <li><a class="menu-item" href="{% url 'homepage' %}">Home</a></li>
-                                    <li><a class="menu-item" href="cars.html">Cars</a>
-                                        <ul>
-                                            <li><a class="menu-item" href="cars.html">Cars List 1</a></li>
-                                            <li><a class="menu-item" href="02_dark-cars.html">Cars List 1 Dark</a></li>
-                                            <li><a class="menu-item" href="cars-list.html">Cars List 2</a></li>
-                                            <li><a class="menu-item" href="02_dark-cars-list.html">Cars List 2 Dark</a></li>
-                                            <li><a class="menu-item" href="car-single.html">Cars Single</a></li>
-                                            <li><a class="menu-item" href="02_dark-car-single.html">Cars Single Dark</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a class="menu-item" href="booking.html">Booking</a></li>
-                                    <li><a class="menu-item" href="account-dashboard.html">My Account</a>
-                                        <ul>
-                                            <li><a class="menu-item" href="account-dashboard.html">Dashboard</a></li>
-                                            <li><a class="menu-item" href="account-profile.html">My Profile</a></li>
-                                            <li><a class="menu-item" href="account-booking.html">My Orders</a></li>
-                                            <li><a class="menu-item" href="account-favorite.html">My Favorite Cars</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a class="menu-item" href="#">Pages</a>
-                                        <ul>
-                                            <li><a class="menu-item" href="about.html">About Us</a></li>
-                                            <li><a class="menu-item" href="contact.html">Contact</a></li>
-                                            <li><a class="menu-item" href="login.html">Login</a></li>
-                                            <li><a class="menu-item" href="register.html">Register</a></li>
-                                            <li><a class="menu-item" href="404.html">Page 404</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a class="menu-item" href="#">News</a>
-                                        <ul>
-                                            <li><a class="menu-item" href="news-standart-right-sidebar.html">News Standard</a>
-                                                <ul>
-                                                    <li><a class="menu-item" href="news-standart-right-sidebar.html">Right Sidebar</a></li>
-                                                    <li><a class="menu-item" href="news-standart-left-sidebar.html">Left Sidebar</a></li>
-                                                    <li><a class="menu-item" href="news-standart-no-sidebar.html">No Sidebar</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a class="menu-item" href="news-grid-right-sidebar.html">News Grid</a>
-                                                <ul>
-                                                    <li><a class="menu-item" href="news-grid-right-sidebar.html">Right Sidebar</a></li>
-                                                    <li><a class="menu-item" href="news-grid-left-sidebar.html">Left Sidebar</a></li>
-                                                    <li><a class="menu-item" href="news-grid-no-sidebar.html">No Sidebar</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a class="menu-item" href="#">Elements</a>
-                                        <ul>
-                                            <li><a class="menu-item" href="preloader.html">Preloader</a></li>
-                                            <li><a class="menu-item" href="icon-boxes.html">Icon Boxes</a></li>
-                                            <li><a class="menu-item" href="badge.html">Badge</a></li>
-                                            <li><a class="menu-item" href="counters.html">Counters</a></li>
-                                            <li><a class="menu-item" href="gallery-popup.html">Gallery Popup</a></li>
-                                            <li><a class="menu-item" href="icons-elegant.html">Icons Elegant</a></li>
-                                            <li><a class="menu-item" href="icons-etline.html">Icons Etline</a></li>
-                                            <li><a class="menu-item" href="icons-font-awesome.html">Icons Font Awesome</a></li>
-                                            <li><a class="menu-item" href="map.html">Map</a></li>
-                                            <li><a class="menu-item" href="modal.html">Modal</a></li>
-                                            <li><a class="menu-item" href="popover.html">Popover</a></li>
-                                            <li><a class="menu-item" href="tabs.html">Tabs</a></li>
-                                            <li><a class="menu-item" href="tooltips.html">Tooltips</a></li>
-                                        </ul>
-                                    </li>
+                                    <li><a href="#" >Trending Vehicles</a></li>
+                                    <li><a href="#">Most in Demands</a></li>
+                                    <li><a href="#">Vehicles by Filter</a></li>
+                                    <li><a  href="{% url 'contact_us' %}">Customer Support</a></li>
                                 </ul>
                             </div>
                             <div class="de-flex-col">
                                 <div class="menu_side_area">
                                     <div class="de-login-menu">
-
-                                        <span id="de-click-menu-profile" class="de-menu-profile">                           
+                                        <span id="de-click-menu-profile" class="de-menu-profile">
+                                            {% if request.user.userprofile.profile_picture %}                     
                                             <img src="{{ request.user.userprofile.profile_picture.url }}" class="img-fluid" alt="Profile: {{ request.user.username }}">
+                                            {% else %}
+                                            <img src="{% static 'images/default_images/default_profile_image.webp' %}" alt="Profile: {{ request.user.username }}" class="img-fluid">
+                                            {% endif %} 
                                         </span>
                                         <div id="de-submenu-profile" class="de-submenu">
                                             <div class="d-name">
@@ -158,7 +102,7 @@
 
                                             <ul class="menu-col">
                                                 <li><a href="{% url 'homepage' %}"><i class="fa fa-home"></i>View Home</a></li>
-                                                <li><a href="#"><i class="fa fa-user"></i>Change Password</a></li>
+                                                <li><a href="{% url 'buyer_profile' %}"><i class="fa fa-user"></i>Change Password</a></li>
                                                 <form method="post" action="{% url 'logout' %}" style="display: inline;">
                                                     {% csrf_token %}
                                                     <button type="submit" class="btn btn-danger">Logout</button>
@@ -206,8 +150,12 @@
                             <div class="card p-4 rounded-5">
                                 <div class="profile_avatar">
                                     <div class="profile_img">
-                                        <img src="{{ request.user.userprofile.profile_picture.url }}" alt="Image : {{request.user.username}}">
-                                    </div>
+                                    {% if request.user.userprofile.profile_picture %}
+                                    <img src="{{request.user.userprofile.profile_picture.url}}" alt="Seller : request.user.username">
+                                    {% else %}
+                                    <img src="{% static 'images/default_images/default_profile_image.webp' %}" alt="Profile: {{ request.user.username }}">
+                                    {% endif %} 
+                                </div>
                                     <div class="profile_name">
                                         <h4>
                                            {{request.user.full_name}}                                             
@@ -220,9 +168,8 @@
                                     <li><a href="{% url 'buyer_dashboard' %}" class=""><i class="fa fa-home"></i>Dashboard</a></li>
                                     <li><a href="{% url 'buyer_profile' %}"><i class="fa fa-user"></i>My Profile</a></li>
                                     <li><a href="{% url 'buyer_chat_list' %}"><i class="fa fa-user"></i>Messages</a></li>
-                                    <li><a href="account-booking.html"><i class="fa fa-calendar"></i>My Orders</a></li>
-                                    <li><a href="account-favorite.html"><i class="fa fa-car"></i>My Favorite Cars</a></li>
-                                    <li><a href="login.html"><i class="fa fa-sign-out"></i>Sign Out</a></li>
+                                    <li><a href="{% url 'my_orders' %}"><i class="fa fa-calendar"></i>My Orders</a></li>
+                                    <li><a href="{% url 'fav_vehicles' %}"><i class="fa fa-car"></i>Favorite Vehicles</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -248,7 +195,7 @@
               <div class="row g-custom-x">
                   <div class="col-lg-3">
                       <div class="widget">
-                          <h5>About Rentaly</h5>
+                          <h5>About SaleSawari</h5>
                           <p>Where quality meets affordability. We understand the importance of a smooth and enjoyable journey without the burden of excessive costs. That's why we have meticulously crafted our offerings to provide you with top-notch vehicles at minimum expense.</p>
                       </div>
                   </div>
@@ -257,10 +204,9 @@
                       <div class="widget">
                           <h5>Contact Info</h5>
                           <address class="s1">
-                              <span><i class="id-color fa fa-map-marker fa-lg"></i>08 W 36th St, New York, NY 10001</span>
-                              <span><i class="id-color fa fa-phone fa-lg"></i>+1 333 9296</span>
-                              <span><i class="id-color fa fa-envelope-o fa-lg"></i><a href="mailto:contact@example.com">contact@example.com</a></span>
-                              <span><i class="id-color fa fa-file-pdf-o fa-lg"></i><a href="#">Download Brochure</a></span>
+                              <span><i class="id-color fa fa-map-marker fa-lg"></i>New Road, Mingora Swat</span>
+                              <span><i class="id-color fa fa-phone fa-lg"></i>+92 34747 91942</span>
+                              <span><i class="id-color fa fa-envelope-o fa-lg"></i><a href="mailto:contact@salesawari.com">contact@salesawari.com</a></span>
                           </address>
                       </div>
                   </div>
@@ -304,7 +250,7 @@
                           <div class="de-flex">
                               <div class="de-flex-col">
                                   <a href="index.html">
-                                      Copyright 2023 - Rentaly by Designesia
+                                      Copyright 2024 - SaleSawari by LazyAlgo
                                   </a>
                               </div>
                               <ul class="menu-simple">

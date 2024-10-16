@@ -1,5 +1,5 @@
  /* --------------------------------------------------
-  * Â© Copyright 2023 - Rentaly by Designesia
+  * Â© Copyright 2024 - Saleswari by LazyAlgo
   * --------------------------------------------------*/
 (function($) {
     'use strict';

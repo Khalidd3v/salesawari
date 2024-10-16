@@ -69,3 +69,9 @@ class Account(AbstractBaseUser):
 class UserProfile(models.Model):
     user = models.OneToOneField(Account, on_delete=models.CASCADE, related_name='userprofile')
     profile_picture = models.ImageField(upload_to='profile_images/', null=True, blank=True)
+
+    def get_profile_picture(self):
+        if self.profile_picture and hasattr(self.profile_picture, 'url'):
+            return self.profile_picture.url
+        else:
+            return "/static/images/default_images/default_profile_image.webp"

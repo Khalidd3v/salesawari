@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import *
 
-# Register your models here.
+admin.site.register(Bargain)
+admin.site.register(SoldVehicleHistory)
+admin.site.register(Order)

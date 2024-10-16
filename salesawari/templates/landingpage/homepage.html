@@ -3,6 +3,8 @@
 {% block title %}
     Home Page
 {% endblock title %}
+
+    
 {% block content %}
 <div class="no-bottom no-top" id="content">
     <div id="top"></div>
@@ -252,32 +254,29 @@
                                     <i class="fa fa-heart"></i><span>{{ vehicle.fav.count }} Favorites</span>
                                 </div>                
                                 <div class="d-atr-group">
-                                    <span class="d-atr"><img src="{% static 'images/icons/1-green.svg' %}" alt="">{{ vehicle.user.username }}</span>
+                                    <span class="d-atr"><img src="{% static 'images/icons/1-green.svg' %}" alt=""><a href="#">{{ vehicle.user.username }}</a></span>
                                     <span class="d-atr"><img src="{% static 'images/icons/2-green.svg' %}" alt="">{{ vehicle.model }}</span>
                                     <span class="d-atr"><img src="{% static 'images/icons/3-green.svg' %}" alt="">{{ vehicle.doors }}</span>
                                     <span class="d-atr"><img src="{% static 'images/icons/4-green.svg' %}" alt="">{{ vehicle.body }}</span>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
-                                        Price <span>{{ vehicle.price }}</span>
+                                        Price : <span>{{ vehicle.price }} PKR</span>
                                     </div>
                                     <div class="mt-2">
                                         {% if request.user.id != vehicle.user.id %}
-                                            <a class="btn btn-sm btn-success me-2" href="#">Buy Now</a>
+                                            <a class="btn btn-sm btn-success me-2" href="{% url 'view_single_vehicle' vehicle.id %}">View</a>
                                             {% if request.user.is_buyer %}
                                                 <a class="btn btn-sm btn-success" href="{% url 'buyer_conversation' vehicle.user.id %}">Ask Price</a>
                                             {% else %}
                                                 <a class="btn btn-sm btn-success" href="{% url 'seller_conversation' vehicle.user.id %}">Ask Price</a>
                                             {% endif %}
                                         {% else %}
-                                            <button class="btn btn-sm btn-success mr-2" disabled>Buy Now</button>
+                                            <a class="btn btn-sm btn-success me-2" href="{% url 'view_single_vehicle' vehicle.id %}">View</a>
                                             <button class="btn btn-sm btn-success" disabled>Ask Price</button>
                                         {% endif %}
                                     </div>
                                 </div>
-                                
-                                
-                                
                             </div>
                         </div>
                     </div>
@@ -405,13 +404,17 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <h4>Excellent Service! Car Rent Service!</h4>
-                            <blockquote>
-                               I have been using Rentaly for my Car Rental needs for over 5 years now. I have never had any problems with their service. Their customer support is always responsive and helpful. I would recommend Rentaly to anyone looking for a reliable Car Rental provider.
-                               <span class="by">Stepanie Hutchkiss</span>
-                           </blockquote>
+                            <div style="margin-top: 40%;">
+                                <h4>Excellent Service! Car Bargain Service!</h4>
+                                <blockquote>
+                                I have been using SaleSawari online bargain system, and i have bought vehicles which have the best prices.
+                                <span class="by">Asad Professor</span>
+                            </blockquote>
+                        </div>
                         </div> 
-                        <img src="{% static 'images/testimonial/1.jpg' %}" class="img-fluid" alt="">
+                        <div id="image-effect">
+                            <img src="{% static 'images/default_images/asad.jpg' %}" alt="Image" />
+                        </div>
                     </div>
                 </div>
 
@@ -428,13 +431,18 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <h4>Excellent Service! Car Rent Service!</h4>
-                            <blockquote>
-                               We have been using Rentaly for our trips needs for several years now and have always been happy with their service. Their customer support is Excellent Service! and they are always available to help with any issues we have. Their prices are also very competitive.
-                               <span class="by">Jovan Reels</span>
-                           </blockquote>
+                            <div style="margin-top: 40%;">
+                                <h4>Easy To Find Vehicle With Best Price!</h4>
+                                <blockquote>
+                                If i have found SaleSawari platform for selling and buying vehicles online, i would be the first user to signup!
+                                <span class="by">Dr. Numan</span>
+                                </blockquote>
+                            </div>
                         </div>
-                        <img src="{% static 'images/testimonial/2.jpg' %}" class="img-fluid" alt="">
+                        <div id="image-effect">
+                            <img src="{% static 'images/default_images/numan.jpg' %}" alt="">
+                        </div>
+                        
                     </div>
                 </div>
                 
@@ -452,13 +460,17 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <h4>Excellent Service! Car Rent Service!</h4>
-                            <blockquote>
-                               Endorsed by industry experts, Rentaly is the Car Rental solution you can trust. With years of experience in the field, we provide fast, reliable and secure Car Rental services.
-                               <span class="by">Kanesha Keyton</span>
-                           </blockquote>
+                            <div style="margin-top: 40%;">
+                                <h4>Just in love with Money Protection!</h4>
+                                <blockquote>
+                                SaleSawari will protect your identity and will help you check the car before the release your payment to seller.
+                                <span class="by">Hassan Khan</span>
+                                </blockquote>
+                            </div>
                         </div>
-                        <img src="{% static 'images/testimonial/3.jpg' %}" class="img-fluid" alt="">
+                        <div id="image-effect">
+                            <img src="{% static 'images/default_images/hassan.jpg' %}" alt="">
+                        </div>
                     </div>
                 </div>
 
