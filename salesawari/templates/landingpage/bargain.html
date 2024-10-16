@@ -1,0 +1,163 @@
+{% extends "landingpage/main.html" %}
+{% load static %}
+{% block title %}
+    Bargain
+{% endblock title %}
+{% block content %}
+<div class="no-bottom no-top" id="content">
+    <div id="top"></div>
+    
+    <!-- section begin -->
+    <section id="subheader" class="jarallax text-light">
+        <img src="{% static 'images/background/subheader.jpg' %}" class="jarallax-img" alt="">
+            <div class="center-y relative text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h1>Salesawari Bargain</h1>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <!-- section close -->
+    
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Image Slider -->
+                <div id="vehicleCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        {% if vehicle.images.all %}
+                        {% for image in vehicle.images.all %}
+                        <div class="carousel-item active">
+                            <img src="{{ image.image.url }}" class="d-block w-100" alt="{{ vehicle.name }} Image {{ forloop.counter }}">
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#vehicleCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#vehicleCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+                <!-- Vehicle Specifications -->
+                <h3 class="text-dark">Vehicle Specifications</h3>
+                <ul class="list-group">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i>Vehicle Name: {{vehicle.name | title}}</li>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i>Body: {{vehicle.body}}</li>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i>Seats: {{vehicle.seats}}</li>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i>Doors: {{vehicle.doors}}</li>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i>Fuel Type: {{vehicle.fuel_type}}</li>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i>Engine: {{vehicle.engine}}</li>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i>Model and Mode: {{vehicle.model}} | {{vehicle.mode}} </li>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i>Color: {{vehicle.color}}</li>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <!-- Buyer Details Form -->
+                <h3 class="text-dark">Buyer Details</h3>
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="done-order" id="done-order">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="full-name" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" name="full-name" id="full-name" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="email-address" class="form-label">Email</label>
+                            <input type="email" class="form-control" name="email-address" id="email-address" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="phone-number" class="form-label">Phone Number</label>
+                            <input type="text" class="form-control"  name="phone-number" id="phone-number" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="cnic" class="form-label">CNIC Number</label>
+                            <input type="text" class="form-control" name="cnic" id="cnic" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Address</label>
+                        <textarea class="form-control" name="address" id="address" rows="3" required></textarea>
+                    </div>
+                    {% if messages %}
+                    {% for m in messages %}
+                    <p class="text-danger">{{m}}</p>
+                    {% endfor %}
+                    {% endif %}
+                    <!-- Online Payment Demo Form -->
+                    <h3 class="text-dark">Online Payment</h3>
+                    <div class="mb-3">
+                        <label for="card-number" class="form-label">Card Number</label>
+                        <input type="text" class="form-control" name="card-number" id="card-number" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="expiry-date" class="form-label">Expiry Date</label>
+                            <input type="text" class="form-control" name="expiry-date" id="expiry-date" placeholder="MM/YY" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="cvv" class="form-label">CVV</label>
+                            <input type="text" class="form-control" name="cvv" id="cvv" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="card-holder-name" class="form-label">Cardholder Name</label>
+                        <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" required>
+                    </div>
+                    <div class="mb-3">
+                        <i class="bi bi-credit-card fs-2 me-2"></i>
+                        <i class="bi bi-credit-card-2-front fs-2 me-2"></i>
+                        <i class="bi bi-credit-card-2-back fs-2"></i>
+                    </div>
+                    <!-- Buttons -->
+                    <div class="mt-2 mb-4">
+                        <button type="reset" class="btn btn-danger">Cancel Order</button>
+                        <button type="submit" class="btn btn-primary">Order Now</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<!-- content close -->
+
+<a href="#" id="back-to-top"></a>
+{% endblock content %}
+    
