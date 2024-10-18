@@ -146,10 +146,10 @@
                             <div class="row">
                                 <div class="col-md-12 text-center">
 									<h1>
-                  {% block seller_page_title %}
-                    
-                  {% endblock seller_page_title %}
-                    </h1>
+                                        {% block dashboard_page_title %}
+                                            
+                                        {% endblock dashboard_page_title %}
+                                    </h1>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -180,21 +180,14 @@
                                 </div>
                                 <div class="spacer-20"></div>
                                 <ul class="menu-col">
-                                    <li><a href="{% url 'seller_dashboard' %}" class=""><i class="fa fa-home"></i>Dashboard</a></li>
-                                    <li><a href="{% url 'list_new_vehicle' %}" class=""><i class="fa fa-car"></i>List New Vehicle</a></li>
-                                    <li><a href="{% url 'seller_earnings' %}" class=""><i class="fa fa-dollar"></i>Earning & Balance</a></li>
-                                    <li><a href="{% url 'seller_profile' %}"><i class="fa fa-user"></i>My Profile</a></li>
-                                    <li><a href="{% url 'listed_vehicles' %}"><i class="fa fa-truck"></i>Listed Vehicles</a></li>
-                                    <li><a href="#"><i class="fa fa-calendar"></i>My Orders</a></li>
-                                    <li><a href="{% url 'seller_chat_list' %}"><i class="fa fa-inbox"></i>Messages</a></li>
-                                    <li><a href="{% url 'favorite_vehicles' %}"><i class="fa fa-car"></i>Buyer Made Favorite</a></li>
+                                    <li><a href="{% url 'dashboard' %}" class=""><i class="fa fa-home"></i>Dashboard</a></li>
                             </div>
                         </div>
 
                        
-                       {% block seller_content %}
+                       {% block dashboard_content %}
                         
-                       {% endblock seller_content %}
+                       {% endblock dashboard_content %}
                         
                     </div>
                 </div>
@@ -289,7 +282,6 @@
     ================================================== -->
     <script src="{% static 'js/plugins.js' %}"></script>
     <script src="{% static 'js/designesia.js' %}"></script>
-    {% comment %} <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgiM7ogCAA2Y5pgSk2KXZfxF5S_1jsptA&amp;libraries=places&amp;callback=initPlaces" async="" defer=""></script> {% endcomment %}
     {% block extra_js %}
     {% endblock extra_js %}
 </body>

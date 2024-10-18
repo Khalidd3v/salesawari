@@ -42,7 +42,6 @@
             object-fit: cover !important;
         }
         
-        /* Add dark and blur effect to the lower part */
         #image-effect::after {
             content: "" !important;
             position: absolute !important;
@@ -51,7 +50,7 @@
             width: 100% !important;
             height: 100% !important;
             background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.7) 100%) !important;
-            filter: blur(8px) !important; /* You can adjust the blur intensity */
+            filter: blur(8px) !important; 
             z-index: 1 !important;
             pointer-events: none !important;
         }        
@@ -114,9 +113,11 @@
                                 <div class="de-flex-col">
                                     <!-- logo begin -->
                                     <div id="logo">
-                                        <a href="index.html">
-                                            <img class="logo-1" src="{% static 'images/logo-light.png' %}" alt="">
-                                            <img class="logo-2" src="{% static 'images/logo-light.png' %}" alt="">
+                                        <a href="#">
+                                            {% comment %} <img class="logo-1" src="{% static 'images/logo-light.png' %}" alt="">
+                                            <img class="logo-2" src="{% static 'images/logo-light.png' %}" alt=""> {% endcomment %}
+                                            <b><h2 style="color:green;" class="logo-1">SaleSawari.</h2></b>
+                                            <b><h2 style="color:green;" class="logo-2">SaleSawari.</h2></b>
                                         </a>
                                     </div>
                                     <!-- logo close -->
@@ -136,8 +137,10 @@
                                     {% if request.user.is_authenticated %}
                                         {% if request.user.is_seller %}
                                             <a href="{% url 'seller_dashboard' %}" class="btn-main">Dashboard</a>
-                                        {% else %}
+                                        {% elif request.user.is_buyer %}
                                             <a href="{% url 'buyer_dashboard' %}" class="btn-main">Dashboard</a>
+                                        {% else %}
+                                        <a href="{% url 'dashboard' %}" class="btn-main">Dashboard</a>
                                         {% endif %}
                                         
                                         <form method="post" action="{% url 'logout' %}" style="display: inline;">
@@ -192,7 +195,7 @@
                             <div class="col-lg-6">
                                 <div class="widget">
                                     <ul>
-                                        <li><a href="#">About</a></li>
+                                        <li><a href="{% url 'about_us' %}">About</a></li>
                                         <li><a href="#">Blog</a></li>
                                         <li><a href="#">Careers</a></li>
                                         <li><a href="#">News</a></li>

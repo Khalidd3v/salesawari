@@ -132,8 +132,11 @@ def seller_login(request):
         
         user = authenticate(email=email, password=password)
         if user is not None:
-            login(request, user)
-            return redirect('homepage')
+            if user.is_seller:
+                login(request, user)
+                return redirect('homepage')
+            else:
+                messages.error(request, "If you are buyer please user buyer login path to login to your account.")
         else:
             messages.error(request, 'Email or password is wrong!')
             return redirect('seller_login')
@@ -151,10 +154,34 @@ def buyer_login(request):
         
         user = authenticate(email=email, password=password)
         if user is not None:
-            login(request, user)
-            return redirect('homepage')
+            if user.is_buyer:
+                login(request, user)
+                return redirect('homepage')
+            else:
+                messages.error(request, "If you are seller please user Seller login path to login to your account.")
         else:
             messages.error(request, 'Email or password is wrong!')
             return redirect('buyer_login')
         
     return render(request, 'accounts/buyer_login.html')
+
+
+
+def superuser_login_view(request):
+    if request.method == 'POST':
+        email = request.POST.get('superuser-login-email')
+        password = request.POST.get('superuser-login-password')
+        
+        user = authenticate(request, username=email, password=password)
+        
+        if user is not None:
+            if user.is_superuser:
+                login(request, user)
+                return redirect('dashboard')
+            else:
+                messages.error(request, 'You are not a superuser. Please log in through the general login page.')
+                return redirect('login_superuser')
+        else:
+            messages.error(request, 'Invalid email or password. Please try again.')
+    
+    return render(request, 'accounts/login_superuser.html')

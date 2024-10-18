@@ -11,4 +11,5 @@ urlpatterns = [
     path('seller-login/', seller_login, name="seller_login"),
     path('buyer-login/', buyer_login, name="buyer_login"),
     path('logout/', LogoutView.as_view(next_page='homepage'), name='logout'),
+    path('login-superuser/', superuser_login_view, name='login_superuser'),
 ]

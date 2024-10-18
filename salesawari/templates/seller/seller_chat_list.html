@@ -14,7 +14,7 @@
                 {% for data in conversation_data %}
                     <div class="list-group-item">
                         <p>Conversation with {{ data.other_user.username }}</p>
-                        <a href="{% url 'buyer_conversation' data.other_user.id %}" class="btn btn-primary">Reply</a>
+                        <a href="{% url 'seller_conversation' data.other_user.id %}" class="btn btn-primary">Reply</a>
                     </div>
                 {% empty %}
                     <p>No conversations found.</p>
