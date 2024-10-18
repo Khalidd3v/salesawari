@@ -10,5 +10,6 @@ urlpatterns = [
     path('bargain/<int:vehicle_id>/', bargain, name='bargain'),
     path('my-orders', my_orders, name='my_orders'),
     path('invoice/<int:order_id>/', invoice, name='invoice'),
+    path('change-password/', change_password, name='change_password'),
 
 ]

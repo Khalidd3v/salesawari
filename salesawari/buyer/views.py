@@ -8,6 +8,7 @@ from dashboard.models import *
 from .models import *
 from django.contrib import messages
 from django.db import transaction
+from django.contrib.auth.hashers import check_password
 
 
 @buyer_required
@@ -231,3 +232,29 @@ def buyer_profile(request):
             return redirect('buyer_profile')
 
     return render(request, 'buyer/buyer_profile.html')
+
+
+@buyer_required
+@dynamic_login_required
+def change_password(request):
+    if request.method == 'POST':
+        current_password = request.POST.get('current_password')
+        new_password = request.POST.get('new_password')
+        confirm_password = request.POST.get('confirm_password')
+        
+        try:
+            if not check_password(current_password, request.user.password):
+                raise ValueError("Invalid current password!")
+            if new_password != confirm_password:
+                raise ValueError("New password and confirm password do not match!")
+            if len(new_password) < 8 and len(confirm_password) < 8:
+                raise ValueError("New password must be at least 8 characters!")
+            request.user.set_password(new_password)
+            request.user.save()
+            messages.success(request, "Password changed successfully!")
+        except Exception as e:
+            messages.error(request, str(e))
+            
+        return redirect('change_password')
+    
+    return render(request, 'seller/change_password.html')
