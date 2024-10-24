@@ -10,15 +10,18 @@ class TimeStampedModel(models.Model):
     class Meta:
         abstract = True
 
+def generate_slug():
+    return str(uuid4())[:8]
 
 class Bargain(TimeStampedModel):
-    slug = models.SlugField(max_length=32, unique=True, blank=True, default=str(uuid4())[:8])
+    slug = models.SlugField(max_length=32, unique=True, blank=True, default=generate_slug)
     seller = models.ForeignKey(Account, on_delete=models.DO_NOTHING, related_name='bargain_seller')
     buyer = models.ForeignKey(Account, on_delete=models.DO_NOTHING, related_name='bargain_buyer')
     vehicle = models.ForeignKey(Vehicle, on_delete=models.DO_NOTHING)
 
     def __str__(self):
-            return f"Bargain {self.slug} - {self.vehicle}"
+        return f"Bargain {self.slug} - {self.vehicle}"
+
     
 class SoldVehicleHistory(TimeStampedModel):
     seller = models.ForeignKey(Account, on_delete=models.DO_NOTHING, related_name='sold_vehicle_seller')

@@ -1,0 +1,38 @@
+{% extends "seller/main.html" %}
+{% load static %}
+{% block title %} Order Actions {% endblock title %}
+{% block seller_page_title %} Order Actions {% endblock seller_page_title %}
+{% block seller_content %}
+<div class="col-lg-9">
+    <div class="overflow-auto" style="max-height: 500px;"> 
+        <div class="card p-4 rounded-5 mb25">
+            <h4>My Recent Orders</h4>
+
+            <table class="table de-table">
+              <thead>
+                <tr>
+                  <th scope="col"><span class="text-uppercase fs-12 text-gray">Order ID</span></th>
+                  <th scope="col"><span class="text-uppercase fs-12 text-gray">Vehicle</span></th>
+                  <th scope="col"><span class="text-uppercase fs-12 text-gray">Buyer</span></th>
+                  <th scope="col"><span class="text-uppercase fs-12 text-gray">Color</span></th>
+                  <th scope="col"><span class="text-uppercase fs-12 text-gray">Engine</span></th>
+                  <th scope="col"><span class="text-uppercase fs-12 text-gray">Action</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for order in orders %}
+                <tr>
+                  <td><span class="d-lg-none d-sm-block">Order ID</span><div class="badge bg-gray-100 text-dark">{{forloop.counter}}</div></td>
+                  <td><span class="d-lg-none d-sm-block">Vehicle</span><span class="bold">{{order.vehicle.name}}</span></td>
+                  <td><span class="d-lg-none d-sm-block">Vehicle</span><span class="bold">{{order.full_name}}</span></td>
+                  <td><span class="d-lg-none d-sm-block">Color</span>{{order.vehicle.color}}</td>
+                  <td><span class="d-lg-none d-sm-block">Drop Off Location</span>{{order.vehicle.engine}}</td>
+                  <td><div class="badge rounded-pill bg-info">View Order</div><a href="#"></a></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
