@@ -1,0 +1,96 @@
+{% extends "landingpage/main.html" %}
+{% load static %}
+{% block title %}
+How to Buy a Vehicle on SaleSalwari
+{% endblock title %}
+{% block content %}
+<div class="no-bottom no-top" id="content">
+    <div id="top"></div>
+    
+    <!-- section begin -->
+    <section id="subheader" class="jarallax text-light">
+        <img src="{% static 'images/background/subheader.jpg' %}" class="jarallax-img" alt="">
+            <div class="center-y relative text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h1>How to Buy a Vehicle on SaleSalwari</h1>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+    </section>
+<div class="container mt-5 text-dark">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title text-center text-dark mt-2 mb-4">How to Buy a Vehicle on SaleSalwari</h1>
+            <p>
+                <strong>SaleSalwari</strong> is your trusted platform for buying and selling vehicles, offering a seamless online experience with full transparency and security. In this detailed guide, we will walk you through the entire process of purchasing a vehicle on SaleSalwari, from account setup to final payment release.
+            </p>
+            <h2>Step 1: Create and Log In to Your Account</h2>
+            <p>
+                Before you can begin your vehicle search, you will need to <strong>create an account</strong> on SaleSalwari. This is a quick and simple process:
+            </p>
+            <ul>
+                <li>Go to the <a href="{% url 'register_user' %}">registration page</a> and fill out your details, including your email, password, and contact information.</li>
+                <li>Once registered, log in to your account using your email and password from the <a href="{% url 'login_user' %}">login page</a>.</li>
+            </ul>
+            <p>
+                Having an account allows you to track your purchases, communicate with sellers, and save your favorite vehicles for future consideration.
+            </p>
+
+            <h2>Step 2: Browse and Find Your Desired Vehicle</h2>
+            <p>
+                After logging in, you can begin browsing the available vehicles. SaleSalwari offers advanced filtering options to help you find exactly what you're looking for:
+            </p>
+            <ul>
+                <li>Search by make, model, year, price range, or location.</li>
+                <li>View detailed listings with photos, specifications, and seller contact information.</li>
+                <li>Save vehicles to your favorites to compare and review them later.</li>
+            </ul>
+            <p>
+                Once you've found a vehicle you're interested in, you can contact the seller directly through our real-time chat feature to ask any questions or negotiate the price.
+            </p>
+
+            <h2>Step 3: Proceed to Purchase</h2>
+            <p>
+                When you're ready to make a purchase, click the <strong>"Buy Now"</strong> button on the vehicle's listing. SaleSalwari will prompt you to enter your payment and personal details securely:
+            </p>
+            <ul>
+                <li>Enter your credit or debit card details for payment.</li>
+                <li>Provide personal information such as your name, address, and contact number for transaction purposes.</li>
+                <li>Review the total cost, including any taxes or additional fees, before confirming the purchase.</li>
+            </ul>
+            <p>
+                SaleSalwari ensures that all payment details are encrypted and handled securely to protect your personal information.
+            </p>
+
+            <h2>Step 4: Await Seller Confirmation</h2>
+            <p>
+                After completing your purchase, the seller will be notified to arrange the delivery or pick-up of the vehicle. You can use the SaleSalwari chat feature to finalize the details directly with the seller.
+            </p>
+            <p>
+                Please note that SaleSalwari holds the payment in escrow until the buyer confirms satisfaction with the purchase.
+            </p>
+
+            <h2>Step 5: Provide a Review and Release of Payment</h2>
+            <p>
+                Once the vehicle is delivered and you've had a chance to inspect it, SaleSalwari will ask you to provide feedback on the transaction. If you’re satisfied, leave a <strong>positive review</strong> for the seller. This review helps build trust within the SaleSalwari community.
+            </p>
+            <p>
+                After the review is submitted, the SaleSalwari admin will release the payment from the escrow account to the seller. This ensures that both the buyer and seller are protected during the transaction.
+            </p>
+
+            <h2>Final Thoughts</h2>
+            <p>
+                Buying a vehicle on SaleSalwari is a simple, secure process designed to make online vehicle purchases smooth and hassle-free. With real-time communication, secure payment handling, and an easy-to-use platform, you can confidently find and buy the vehicle that’s right for you.
+            </p>
+            <p>
+                If you have any questions during the process, our support team is available to assist you every step of the way. Start browsing today and drive off with your dream vehicle through SaleSalwari!
+            </p>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock content %}
