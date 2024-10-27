@@ -6,6 +6,16 @@
 {% block seller_content %}
     <!-- content begin -->
     <div class="col-lg-9">
+        {% if messages %}
+        <div>
+            {% for message in messages %}
+                <div class="alert {% if message.tags == 'error' %}alert-danger{% elif message.tags == 'success' %}alert-success{% else %}alert-info{% endif %} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
         <div class="overflow-auto" style="max-height: 500px;"> 
             {% if vehicles %}
                 {% for v in vehicles %}
@@ -29,15 +39,21 @@
                                         <li><span>Fuel:</span>{{ v.fuel_type }}</li>
                                         <li><span>Horsepower:</span>{{ v.horsepower }}</li>
                                         <li><span>Engine:</span>{{ v.engine }}</li>
-                                        <li><span>Drive:</span>{{ v.drive }}</li>
+                                        <li><span>Type:</span>{{ v.vehicle_type }}</li>
                                         <li><span>Type:</span>{{ v.body }}</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="d-price">
-                            Daily rate from <span>$ {{ v.price }}</span>
-                            <a class="btn-main" href="#">View Details</a>
+                            Price <span>$ {{ v.price }}</span>
+                            <a class="btn-main" href="{% url 'view_single_vehicle' v.id %}">View</a>
+                            <form method="post" class="mt-2">
+                                {% csrf_token %}
+                                <input type="hidden" name="delete-car-form">
+                                <input type="hidden" name="car-id" value="{{v.id}}">
+                                <button type="Submit" class="btn-main" style="background-color: red;" >Delete</button>
+                            </form>
                         </div>
                         <div class="clearfix"></div>
                     </div>

@@ -1,0 +1,199 @@
+{% extends "landingpage/main.html" %}
+{% load static %}
+{% block title %}
+    Filter Vehicle By Price Range
+{% endblock title %}
+{% block content %}
+<div class="no-bottom no-top" id="content">
+    <div id="top"></div>
+    
+    <!-- section begin -->
+    <section id="subheader" class="jarallax text-light">
+        <img src="{% static 'images/background/subheader.jpg' %}" class="jarallax-img" alt="">
+            <div class="center-y relative text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h1>Filter Vehicle By Price Range</h1>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <!-- section close -->
+
+    <section id="section-cars">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <!-- Color filters -->
+                    <div class="item_filter_group">
+                        <h4>Filter by colour</h4>
+                        <div class="de_form">
+                            <div class="de_checkbox">
+                                <input id="color_black" name="color_black" type="checkbox" value="black">
+                                <label for="color_black">Black</label>
+                            </div>
+                            <div class="de_checkbox">
+                                <input id="color_white" name="color_white" type="checkbox" value="white">
+                                <label for="color_white">White</label>
+                            </div>
+                            <div class="de_checkbox">
+                                <input id="color_red" name="color_red" type="checkbox" value="red">
+                                <label for="color_red">Red</label>
+                            </div>
+                            <div class="de_checkbox">
+                                <input id="color_blue" name="color_blue" type="checkbox" value="blue">
+                                <label for="color_blue">Blue</label>
+                            </div>
+                            <div class="de_checkbox">
+                                <input id="color_green" name="color_green" type="checkbox" value="green">
+                                <label for="color_green">Green</label>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Engine capacity filters -->
+                    <div class="item_filter_group">
+                        <h4>Car Engine Capacity (cc)</h4>
+                        <div class="de_form">
+                            <div class="de_checkbox">
+                                <input id="engine_1000_2000" name="engine_1000_2000" type="checkbox" value="1000-2000">
+                                <label for="engine_1000_2000">1000 - 2000</label>
+                            </div>
+                            <div class="de_checkbox">
+                                <input id="engine_2000_4000" name="engine_2000_4000" type="checkbox" value="2000-4000">
+                                <label for="engine_2000_4000">2000 - 4000</label>
+                            </div>
+                            <div class="de_checkbox">
+                                <input id="engine_4000_6000" name="engine_4000_6000" type="checkbox" value="4000-6000">
+                                <label for="engine_4000_6000">4000 - 6000</label>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Price range slider -->
+                    <div class="item_filter_group">
+                        <h4>Price Range ($)</h4>
+                        <div>
+                            <span id="priceValue">$0 - $10000</span>
+                            <input type="range" id="priceRange" min="0" max="10000" value="10000" class="slider">
+                        </div>
+                    </div>
+                
+                    <div>
+                        <button id="filterButton" class="btn btn-sm btn-success">Filter</button>
+                    </div>
+                </div>
+    
+                <!-- Results container -->
+                <div id="vehicleResults" class="col-lg-9">
+                    <div class="row">
+                        <!-- Vehicle cards will be rendered here -->
+                         <div id="default_message">
+                         <h2>Use Filter to filter for you in a second or 2 ☺️</h2>
+                         <p>Please use correct filteration and will show you all the vehciles that come under your filteration ranges.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Price range slider
+        const priceRange = document.getElementById('priceRange');
+        const priceValue = document.getElementById('priceValue');
+        const message = document.getElementById('default_message');
+        
+        // Update price display when slider moves
+        priceRange.addEventListener('input', function() {
+            priceValue.textContent = `$0 - $${this.value}`;
+        });
+        
+        // Filter button click handler
+        document.getElementById('filterButton').addEventListener('click', async function() {
+            // Get selected colors
+            const selectedColors = Array.from(document.querySelectorAll('[id^="color_"]:checked'))
+                .map(cb => cb.value);
+            
+            // Get selected engine ranges
+            const selectedEngineRanges = Array.from(document.querySelectorAll('[id^="engine_"]:checked'))
+                .map(cb => cb.value);
+            
+            // Get price range
+            const maxPrice = document.getElementById('priceRange').value;
+            
+            // Prepare filter data
+            const filterData = {
+                colors: selectedColors,
+                engine_range: selectedEngineRanges,
+                price_range: {
+                    min: 0,
+                    max: parseInt(maxPrice)
+                }
+            };
+            
+            try {
+                const response = await fetch('/api/filter-vehicles/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(filterData)
+                });
+                
+                const vehicles = await response.json();
+                message.style.dispaly = 'None';
+                displayVehicles(vehicles);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+        
+        function displayVehicles(vehicles) {
+            const container = document.querySelector('#vehicleResults .row');
+            container.innerHTML = '';
+            
+            vehicles.forEach(vehicle => {
+                const card = `
+                    <div class="col-lg-12">
+                        <div class="de-item-list mb30">
+                            <div class="d-img">
+                                <img src="${vehicle.image || ''}" class="img-fluid" alt="${vehicle.name}">
+                            </div>
+                            <div class="d-info">
+                                <div class="d-text">
+                                    <h4>${vehicle.name}</h4>
+                                    <div class="d-atr-group">
+                                        <ul class="d-atr">
+                                            <li><span>Seats:</span>${vehicle.seats}</li>
+                                            <li><span>Doors:</span>${vehicle.doors}</li>
+                                            <li><span>Fuel:</span>${vehicle.fuel_type}</li>
+                                            <li><span>Engine:</span>${vehicle.engine}</li>
+                                            <li><span>Type:</span>${vehicle.vehicle_type}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-price">
+                                Daily rate from <span>$${vehicle.price}</span>
+                                <a class="btn-main" href="/view-vehicle/${vehicle.id}">Rent Now</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += card;
+            });
+        }
+    });
+</script>
+{% endblock %}
