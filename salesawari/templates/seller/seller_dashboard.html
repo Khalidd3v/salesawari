@@ -74,7 +74,7 @@
                   <td><span class="d-lg-none d-sm-block">Vehicle</span><span class="bold">{{order.full_name}}</span></td>
                   <td><span class="d-lg-none d-sm-block">Color</span>{{order.vehicle.color}}</td>
                   <td><span class="d-lg-none d-sm-block">Drop Off Location</span>{{order.vehicle.engine}}</td>
-                  <td><div class="badge rounded-pill bg-info">View Order</div><a href="#"></a></td>
+                  <td><a href="{% url 'seller_invoice' order.id %}"><div class="badge rounded-pill bg-info">View Order</div></td></a>
                 </tr>
                 {% endfor %}
               </tbody>

@@ -6,8 +6,17 @@
 <div class="col-lg-9">
     <div class="overflow-auto" style="max-height: 500px;"> 
         <div class="card p-4 rounded-5 mb25">
-            <h4>My Recent Orders</h4>
-
+            <h4>Orders Management</h4>
+            {% if messages %}
+            <div>
+                {% for message in messages %}
+                    <div class="alert {% if message.tags == 'error' %}alert-danger{% elif message.tags == 'success' %}alert-success{% else %}alert-info{% endif %} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
             <table class="table de-table">
               <thead>
                 <tr>
@@ -27,7 +36,30 @@
                   <td><span class="d-lg-none d-sm-block">Vehicle</span><span class="bold">{{order.full_name}}</span></td>
                   <td><span class="d-lg-none d-sm-block">Color</span>{{order.vehicle.color}}</td>
                   <td><span class="d-lg-none d-sm-block">Drop Off Location</span>{{order.vehicle.engine}}</td>
-                  <td><div class="badge rounded-pill bg-info">View Order</div><a href="#"></a></td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <a href="{% url 'seller_invoice' order.id %}" class="badge rounded-pill bg-info me-3">View Order</a>
+                      {% if order.is_confirmed == 'Accept' %}
+                      <a href="#" class="badge rounded-pill bg-success me-3">Status {{order.is_confirmed}}</a>
+                      {% elif order.is_confirmed == 'Pending' %}
+                      <a href="#" class="badge rounded-pill bg-warning me-3">Status {{order.is_confirmed}}</a>
+                      {% else %}
+                      <a href="#" class="badge rounded-pill bg-danger me-3">Status {{order.is_confirmed}}</a>
+                      {% endif %}
+                      <form method="post" class="d-flex align-items-center">
+                        {% csrf_token %}
+                        <input type="hidden" name="order-action-form" value="order-action-form">
+                        <input type="hidden" name="order-id" value="{{ order.id }}">
+                        <select class="form-select me-2" name="order-option" id="order-option">
+                          <option value="">Select Order Status</option>
+                          <option value="Accept">Accept</option>
+                          <option value="Cancel">Cancel</option>
+                          <option value="Pending">Pending</option>
+                        </select>
+                        <button type="submit" class="badge rounded-pill bg-info">Submit</button>
+                      </form>
+                    </div>
+                  </td>
                 </tr>
                 {% endfor %}
               </tbody>

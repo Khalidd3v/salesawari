@@ -41,26 +41,16 @@
         <!-- page preloader close -->
 
         <!-- header begin -->
-        <header class="transparent scroll-light has-topbar">
+        <header class="transparent has-topbar">
             <div id="topbar" class="topbar-dark text-light">
                 <div class="container">
                     <div class="topbar-left xs-hide">
                         <div class="topbar-widget">
                             <div class="topbar-widget"><a href="#"><i class="fa fa-phone"></i>+92 34747 91942</a></div>
-                            <div class="topbar-widget"><a href="#"><i class="fa fa-envelope"></i>contact@salesawari.com</a></div>
+                            <div class="topbar-widget"><a href="#"><i class="fa fa-envelope"></i>contact@saleswari.com</a></div>
                             <div class="topbar-widget"><a href="#"><i class="fa fa-clock-o"></i>Mon - Fri 08.00 AM - 07.00 PM</a></div>
                         </div>
-                    </div>
-                
-                    <div class="topbar-right">
-                        <div class="social-icons">
-                            <a href="#"><i class="fa fa-facebook fa-lg"></i></a>
-                            <a href="#"><i class="fa fa-twitter fa-lg"></i></a>
-                            <a href="#"><i class="fa fa-youtube fa-lg"></i></a>
-                            <a href="#"><i class="fa fa-pinterest fa-lg"></i></a>
-                            <a href="#"><i class="fa fa-instagram fa-lg"></i></a>
-                        </div>
-                    </div>  
+                    </div> 
                     <div class="clearfix"></div>
                 </div>
             </div>
@@ -73,8 +63,8 @@
                                     <!-- logo begin -->
                                     <div id="logo">
                                         <a href="#">
-                                            {% comment %} <img class="logo-1" src="images/logo-light.png" alt="">
-                                            <img class="logo-2" src="images/logo.png" alt=""> {% endcomment %}
+                                            {% comment %} <img class="logo-1" src="{% static 'images/logo-light.png' %}" alt="">
+                                            <img class="logo-2" src="{% static 'images/logo-light.png' %}" alt=""> {% endcomment %}
                                             <b><h2 style="color:green;" class="logo-1">SaleSawari.</h2></b>
                                             <b><h2 style="color:green;" class="logo-2">SaleSawari.</h2></b>
                                         </a>
@@ -85,47 +75,33 @@
                             <div class="de-flex-col header-col-mid">
                                 <ul id="mainmenu">
                                     <li><a class="menu-item" href="{% url 'homepage' %}">Home</a></li>
-                                    <li><a href="#" >Trending Vehicles</a></li>
-                                    <li><a href="#">Most in Demands</a></li>
-                                    <li><a href="#">Vehicles by Filter</a></li>
+                                    <li><a href="{% url 'post3' %}" >Trending Vehicles</a></li>
+                                    <li><a href="{% url 'most_in_demand' %}">Most in Demands</a></li>
+                                    <li><a href="{% url 'filter_vehicles' %}">Vehicles by Filter</a></li>
                                     <li><a  href="{% url 'contact_us' %}">Customer Support</a></li>
                                 </ul>
                             </div>
                             <div class="de-flex-col">
                                 <div class="menu_side_area">
-                                    <div class="de-login-menu">
-
-                                        <span id="de-click-menu-profile" class="de-menu-profile">
-                                            {% if request.user.userprofile.profile_picture %}                     
-                                            <img src="{{ request.user.userprofile.profile_picture.url }}" class="img-fluid" alt="Profile: {{ request.user.username }}">
-                                            {% else %}
-                                            <img src="{% static 'images/default_images/default_profile_image.webp' %}" alt="Profile: {{ request.user.username }}" class="img-fluid">
-                                            {% endif %} 
-                                        </span>
-
+                                    {% if request.user.is_authenticated %}
+                                        {% if request.user.is_seller %}
+                                            <a href="{% url 'seller_dashboard' %}" class="btn-main">Dashboard</a>
+                                        {% elif request.user.is_buyer %}
+                                            <a href="{% url 'buyer_dashboard' %}" class="btn-main">Dashboard</a>
+                                        {% else %}
+                                        <a href="{% url 'dashboard' %}" class="btn-main">Dashboard</a>
+                                        {% endif %}
                                         
-
-                                        <div id="de-submenu-profile" class="de-submenu">
-                                            <div class="d-name">
-                                                <h4>{{request.user.username}}</h4>
-                                                <span class="text-gray">{{request.user.email}}</span>
-                                            </div>
-
-                                            <div class="d-line"></div>
-
-                                            <ul class="menu-col">
-                                                <li><a href="{% url 'homepage' %}"><i class="fa fa-home"></i>View Home</a></li>
-                                                <li><a href="{% url 'seller_change_password' %}"><i class="fa fa-user mb-4"></i>Change Password</a></li>
-                                                <li>
-                                                    <form method="post" action="{% url 'logout' %}" style="display: inline; text-align: center;">
-                                                        {% csrf_token %}
-                                                        <button type="submit" class="btn btn-sm btn-danger">Logout</button>
-                                                    </form>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <span id="menu-btn"></span>
-                                    </div>
+                                        <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-danger">Logout</button>
+                                        </form>
+                                        
+                                    {% else %}
+                                        <a href="{% url 'register_user' %}" class="btn-main">Sign Up</a>
+                                        <a href="{% url 'login_user' %}" class="btn-main">Sign In</a>
+                                    {% endif %}
+                                    <span id="menu-btn"></span>
                                 </div>
                             </div>
                         </div>
@@ -208,79 +184,76 @@
         
         <!-- footer begin -->
         <footer class="text-light">
-          <div class="container">
-              <div class="row g-custom-x">
-                  <div class="col-lg-3">
-                      <div class="widget">
-                          <h5>About Saleswari</h5>
-                          <p>Where quality meets affordability. We understand the importance of a smooth and enjoyable journey without the burden of excessive costs. That's why we have meticulously crafted our offerings to provide you with top-notch vehicles at minimum expense.</p>
-                      </div>
-                  </div>
-                  
-                  <div class="col-lg-3">
-                      <div class="widget">
-                          <h5>Contact Info</h5>
-                          <address class="s1">
-                              <span><i class="id-color fa fa-map-marker fa-lg"></i>New Road, Mingora Swat</span>
-                              <span><i class="id-color fa fa-phone fa-lg"></i>+92 34747 91942</span>
-                              <span><i class="id-color fa fa-envelope-o fa-lg"></i><a href="mailto:contact@salesawari.com">contact@salesawari.com</a></span>
-                          </address>
-                      </div>
-                  </div>
+            <div class="container">
+                <div class="row g-custom-x">
+                    <div class="col-lg-3">
+                        <div class="widget">
+                            <h5>About SaleSawari</h5>
+                            <p>Where quality meets affordability. We understand the importance of a smooth and enjoyable journey without the burden of excessive costs. That's why we have meticulously crafted our offerings to provide you with top-notch vehicles at minimum expense.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3">
+                        <div class="widget">
+                            <h5>Contact Info</h5>
+                            <address class="s1">
+                                <span><i class="id-color fa fa-map-marker fa-lg"></i>Mingora swat, pakistan, 19130</span>
+                                <span><i class="id-color fa fa-phone fa-lg"></i>+92 34747 91942</span>
+                                <span><i class="id-color fa fa-envelope-o fa-lg"></i><a href="mailto:contact@salesawari.com">contact@salesawari.com</a></span>
+                            </address>
+                        </div>
+                    </div>
 
-                  <div class="col-lg-3">
-                      <h5>Quick Links</h5>
-                      <div class="row">
-                          <div class="col-lg-6">
-                              <div class="widget">
-                                  <ul>
-                                      <li><a href="#">About</a></li>
-                                      <li><a href="#">Blog</a></li>
-                                      <li><a href="#">Careers</a></li>
-                                      <li><a href="#">News</a></li>
-                                      <li><a href="#">Partners</a></li>
-                                      <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
-                                  </ul>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
+                    <div class="col-lg-3">
+                        <h5>Quick Links</h5>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="widget">
+                                    <ul>
+                                        <li><a href="{% url 'about_us' %}">About us</a></li>
+                                        <li><a href="{% url 'most_in_demand' %}">most in demand</a></li>
+                                        <li><a href="{% url 'filter_vehicles' %}">filter by range</a></li>
+                                        <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                  <div class="col-lg-3">
-                      <div class="widget">
-                          <h5>Social Network</h5>
-                          <div class="social-icons">
-                              <a href="#"><i class="fa fa-facebook fa-lg"></i></a>
-                              <a href="#"><i class="fa fa-twitter fa-lg"></i></a>
-                              <a href="#"><i class="fa fa-linkedin fa-lg"></i></a>
-                              <a href="#"><i class="fa fa-pinterest fa-lg"></i></a>
-                              <a href="#"><i class="fa fa-rss fa-lg"></i></a>
-                          </div>
-                      </div>    
-                  </div>
-              </div>
-          </div>
-          <div class="subfooter">
-              <div class="container">
-                  <div class="row">
-                      <div class="col-md-12">
-                          <div class="de-flex">
-                              <div class="de-flex-col">
-                                  <a href="index.html">
-                                    Copyright 2024 - Salesawari by LazyAlgo
-                                  </a>
-                              </div>
-                              <ul class="menu-simple">
-                                  <li><a href="#">Terms &amp; Conditions</a></li>
-                                  <li><a href="#">Privacy Policy</a></li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
+                    <div class="col-lg-3">
+                        <div class="widget">
+                            <h5>Social Network</h5>
+                            <div class="social-icons">
+                                <a href="#"><i class="fa-brands fa-facebook fa-lg"></i></a>
+                                <a href="#"><i class="fa-brands fa-twitter fa-lg"></i></a>
+                                <a href="#"><i class="fa-brands fa-linkedin fa-lg"></i></a>
+                                <a href="#"><i class="fa-brands fa-pinterest fa-lg"></i></a>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+            <div class="subfooter">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="de-flex">
+                                <div class="de-flex-col">
+                                    <a href="index.html">
+                                        Copyright 2024 - Salesawari made with ❤️ by <a style="margin-left: 3px;" class="text-success" href="https://khalidd3v.netlify.app">Khalidd3v</a>
+                                    </a>
+                                </div>
+                                <ul class="menu-simple">
+                                    <li><a href="{% url 'terms_and_conditions' %}">Terms &amp; Conditions</a></li>
+                                    <li><a href="{% url 'privacy_policy' %}">Privacy Policy</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </footer>
-      <!-- footer close -->
+        <!-- footer close -->
         
     </div>
 

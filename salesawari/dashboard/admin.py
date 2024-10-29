@@ -4,3 +4,4 @@ from .models import *
 admin.site.register(Bargain)
 admin.site.register(SoldVehicleHistory)
 admin.site.register(Order)
+admin.site.register(Balance)

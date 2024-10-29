@@ -75,7 +75,7 @@
                               <td>{{order.vehicle.mode}}</td>
                               <td>{{order.created_at}}</td>
                               <td>
-                                {% if order.is_confirmed == "Completed" %}
+                                {% if order.is_confirmed == "Accept" %}
                                     <span class="badge bg-success">Completed</span>
                                 {% elif order.is_confirmed == "Pending" %}
                                     <span class="badge bg-warning">Pending</span>

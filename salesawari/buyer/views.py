@@ -65,7 +65,7 @@ def buyer_conversation_view(request, user_id):
 @dynamic_login_required
 def bargain(request, vehicle_id):
     buyer = request.user
-    
+
     try:
         vehicle = Vehicle.objects.select_related('user').get(id=vehicle_id, is_sold=False)
     except Vehicle.DoesNotExist:
@@ -74,11 +74,7 @@ def bargain(request, vehicle_id):
 
     seller = vehicle.user
     existing_bargain = Bargain.objects.filter(vehicle=vehicle, buyer=buyer).first()
-
-    if existing_bargain:
-        bargain = existing_bargain
-    else:
-        bargain = Bargain.objects.create(seller=seller, vehicle=vehicle, buyer=buyer)
+    bargain = existing_bargain or Bargain.objects.create(seller=seller, vehicle=vehicle, buyer=buyer)
 
     if request.method == "POST":
         if "done-order" in request.POST:
@@ -114,10 +110,24 @@ def bargain(request, vehicle_id):
                     vehicle.is_sold = True
                     vehicle.save()
                     bargain.delete()
-                return redirect('invoice', order.id)
+
+                    # Updating or creating balance
+                    balance, created = Balance.objects.get_or_create(user=vehicle.user)
+                    balance.pending += int(vehicle.price)
+                    balance.save()
+
+                # Ensure order ID is valid before redirecting
+                if order.id:
+                    return redirect('invoice', order.id)
+                else:
+                    messages.error(request, "Order creation failed.")
+                    return redirect('error_page')
+
             except Exception as e:
-                print("Error : ", e)
+                print("Error:", e)
                 messages.error(request, f"An error occurred: {str(e)}")
+                return redirect('error_page')
+
         else:
             bargain.delete()
             messages.success(request, "Cleared Bargain Page successfully!")
@@ -145,6 +155,11 @@ def my_orders(request):
     completed_orders = Order.objects.filter(is_confirmed='Completed')
     pending_orders = Order.objects.filter(is_confirmed='Pending')
     cancelled_orders = Order.objects.filter(is_confirmed='Cancelled')
+
+    # Debugging: Print fetched orders and their IDs
+    print("Completed Orders:", [(order.id, order.is_confirmed) for order in completed_orders])
+    print("Pending Orders:", [(order.id, order.is_confirmed) for order in pending_orders])
+    print("Cancelled Orders:", [(order.id, order.is_confirmed) for order in cancelled_orders])
 
     context = {
         'completed_orders': completed_orders,
@@ -249,7 +264,6 @@ def change_password(request):
                 raise ValueError("New password and confirm password do not match!")
             if len(new_password) < 8 and len(confirm_password) < 8:
                 raise ValueError("New password must be at least 8 characters!")
-            request.user.set_password(new_password)
             request.user.save()
             messages.success(request, "Password changed successfully!")
         except Exception as e:

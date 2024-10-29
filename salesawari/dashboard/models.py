@@ -32,13 +32,22 @@ class SoldVehicleHistory(TimeStampedModel):
 
     def __str__(self):
         return f"{self.vehicle} sold by {self.seller} to {self.buyer}"
+    
+class Balance(TimeStampedModel):
+    user = models.OneToOneField(Account, on_delete=models.CASCADE, blank=True, null=True)
+    earnings = models.BigIntegerField(default=0, null=True, blank=True)
+    pending = models.BigIntegerField(default=0, null=True, blank=True)
+
+    def __str__(self):
+        return f"Balance for {self.user}"
+    
 
 class Order(TimeStampedModel):
     vehicle = models.ForeignKey(Vehicle, on_delete=models.PROTECT)
     seller = models.ForeignKey(Account, on_delete=models.PROTECT, related_name='order_seller')
     buyer = models.ForeignKey(Account, on_delete=models.PROTECT, related_name='order_buyer')
     vehicle_price = models.PositiveIntegerField()
-    is_confirmed = models.CharField(max_length=32, choices=(('Pending', 'Pending'), ('Completed', 'Completed'), ('Cancelled', 'Cancelled')))
+    is_confirmed = models.CharField(max_length=32, default="Pending")
     full_name = models.CharField(max_length=32, default="Khalid Test")
     email = models.EmailField(default="Khalid@email.com")
     phone = models.CharField(max_length=20, default=000)
